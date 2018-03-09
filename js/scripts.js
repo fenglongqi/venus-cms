@@ -180,7 +180,7 @@
   /*
    * Notifications scripts
    */
-
+/*
   if ($('.an-notifications-container').length > 0) {
     $('.js-nofitication-body').hide();
     $('.js-an-notification-trigger').on('click', function (e) {
@@ -192,7 +192,7 @@
       $(this).parent().hide();
     });
   }
-
+*/
 
   if ($('.js-fixed-header').length > 0) {
     $(window).scroll(function () {
@@ -314,11 +314,12 @@
   *
   */
 
+
   var circle = $('.js-circle');
   if (circle.length > 0) {
     circle.circleProgress({
       thickness: 5,
-      value: 0.75,
+      value: 0,
       size: 150,
       fill: {
         gradient: ['#025d83'],
@@ -330,6 +331,7 @@
   }
 
 
+  /*
   var circletwo = $('.js-circle-two');
   if (circletwo.length > 0) {
     circletwo.circleProgress({
@@ -344,6 +346,7 @@
       $(this).children('.value').children('.value-holder').text((v * 100).toFixed() + '%');
     });
   }
+  */
 
 
   /*

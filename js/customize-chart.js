@@ -1,4 +1,5 @@
 // Line chart with two dataset
+/*
 var data = {
   labels: ["01/2016", "02/2016", "03/2016", "04/2016", "05/2016", "06/2016", "07/2016"],
   datasets: [
@@ -87,6 +88,7 @@ if (ctx) {
 
   document.querySelector('.js-legend').innerHTML = myChart.generateLegend();
 }
+*/
 
 
 
@@ -161,7 +163,7 @@ if (ctxGraph) {
 
 
 // Doughnut chart
-
+/*
 var dataDoughnut = {
   labels: [
     "Comapany X",
@@ -199,7 +201,7 @@ if (ctxDoughnut) {
 
   document.querySelector('.js-legendDoughnut').innerHTML = myDoughnutChart.generateLegend();
 }
-
+*/
 
 
 
