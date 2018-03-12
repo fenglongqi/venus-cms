@@ -211,4 +211,73 @@ function refresh_memory_status(mem_info) {
                 $(this).children('.value').children('.value-holder').text((v * 100).toFixed() + '%');
             });
     }
+<<<<<<< HEAD
 }
+
+/**
+ * 脚本列表渲染
+ */
+
+ function reder_tast(success, message, data) {
+    console.log(data.length)
+    if(!success) {
+        alert(message)
+    }
+    if (data.length > 0) {
+        var str1 = ''
+        for(var i = 0,len = data.length;i<len;i++) {
+            var str = `<div class="list-user-single">
+            <div class="list-name basis-20">
+              <p>${data[i]._id}</p>
+            </div>
+            <div class="list-date basis-20">
+              <p>${data[i].updated_time}</p>
+            </div>
+            <div class="list-text basis-10">
+              <p>${data[i].type}</p>
+            </div>
+            <div class="list-state basis-10">
+              <p>${data[i].cmd}</p>
+            </div>
+            <div class="list-state basis-20">
+              <p>${data[i].cwd}</p>
+            </div>
+            <div class="list-state basis-10">
+              <p>${data[i].status}</p>
+            </div>
+            <div class="list-action basis-10">
+              <div class="btn-group">
+                <button type="button" class="an-btn an-btn-icon small dropdown-toggle"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="icon-setting"></i>
+                </button>
+                <div class="dropdown-menu right-align">
+                  <ul class="an-basic-list">
+                    <li><a href="#">Mark as read</a></li>
+                    <li><a href="#">Mark as unread</a></li>
+                    <li><a href="#">Select</a></li>
+                  </ul>
+                </div>
+              </div>
+              <button class="an-btn an-btn-icon small muted danger"><i class="icon-trash"></i></button>
+            </div>
+          </div>`
+        str1 += str
+        }
+        $('.tast-list').append(str1)
+    }
+ }
+
+/**
+ * 区分不同类型脚本的填写样式
+ */
+
+ $('#script-type').on('change', function() {
+    if($(this).val() == 1||2||3) {
+        $('.type1, .type2, .type3').removeClass('show');
+        $('.type' + $(this).val()).addClass('show');
+    }
+ })
+=======
+}
+>>>>>>> 982ff581ec38ca17f4ded957586e99cb024040ad
