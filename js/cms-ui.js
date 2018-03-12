@@ -211,6 +211,7 @@ function refresh_memory_status(mem_info) {
                 $(this).children('.value').children('.value-holder').text((v * 100).toFixed() + '%');
             });
     }
+<<<<<<< HEAD
 }
 
 /**
@@ -277,3 +278,6 @@ function refresh_memory_status(mem_info) {
         $('.type' + $(this).val()).addClass('show');
     }
  })
+=======
+}
+>>>>>>> 982ff581ec38ca17f4ded957586e99cb024040ad

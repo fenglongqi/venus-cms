@@ -1,9 +1,16 @@
 /*---------- API ---------*/
+<<<<<<< HEAD
 HOST = "http://192.168.20.65:4389";
 
 AGENT_LIST = "/alive/agent";
 AGENT_CPU = "/alive/agentcpu";
 TAST_PUBLIST = "/task/publish"
+=======
+HOST = "http://127.0.0.1:4389";
+
+AGENT_LIST = "/alive/agent";
+AGENT_CPU = "/alive/agentcpu";
+>>>>>>> 982ff581ec38ca17f4ded957586e99cb024040ad
 
 function request_agent_cpu(token, func) {
     $.get(HOST+AGENT_CPU, {token: token}, function (data) {
@@ -17,6 +24,7 @@ function request_alive_agent(func) {
         handler_response(data, func)
     }, "json");
 }
+
 
 function request_get_tast_publish(token,func) {
     $.get(HOST + TAST_PUBLIST,
@@ -40,6 +48,7 @@ function request_post_tast_publish(func) {
             handler_response(data, func)
     }, "json")
 }
+
 
 function handler_response(origin_data, func) {
     if (origin_data === null) {
