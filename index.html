@@ -489,6 +489,8 @@
         function show_agent_info(agent) {
             request_agent_cpu(agent.token, handler_agent_status);
 
+
+
             refresh_disk_status(agent.agent.disk);
             refresh_memory_status(agent.agent.mem);
         }
