@@ -1,0 +1,545 @@
+﻿<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Taole Auto Build System</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/vendor-styles.css" rel="stylesheet">
+      <link rel="stylesheet" href="css/styles.css">
+      <link rel="stylesheet" href="css/index.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div class="an-loader-container">
+        <img src="img/loader.png" alt="">
+      </div>
+
+      <header class="an-header wow fadeInDown">
+
+        <div class="an-topbar-left-part">
+          <h3 class="an-logo-heading">
+            <a class="an-logo-link" href="index.html">淘乐
+              <span>AutoBuild System</span>
+            </a>
+          </h3>
+          <button class="an-btn an-btn-icon toggle-button js-toggle-sidebar">
+            <i class="icon-list"></i>
+          </button>
+          <!--
+          <form class="an-form" action="#">
+            <div class="an-search-field topbar">
+              <input class="an-form-control" type="text" placeholder="Search...">
+              <button class="an-btn an-btn-icon" type="submit">
+                <i class="icon-search"></i>
+              </button>
+            </div>
+          </form>
+          -->
+        </div> <!-- end .AN-TOPBAR-LEFT-PART -->
+
+        <div class="an-topbar-right-part">
+          <div class="an-notifications">
+            <div class="btn-group an-notifications-dropown notifications">
+              <button type="button"
+                class="an-btn an-btn-icon dropdown-toggle js-has-new-notification"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="ion-ios-bell-outline"></i>
+              </button>
+              <div class="dropdown-menu">
+                <p class="an-info-count">Notifications <span>3</span></p>
+                <div class="an-info-content notifications-info notifications-content">
+                  <div class="an-info-single unread">
+                    <a href="#">
+                      <span class="icon-container important">
+                        <i class="icon-setting"></i>
+                      </span>
+                      <div class="info-content">
+                        <h5 class="user-name">Settings updated</h5>
+                        <p class="content"><i class="icon-clock"></i> 30 min ago</p>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="an-info-single unread">
+                    <a href="#">
+                      <span class="icon-container success">
+                        <i class="icon-cart"></i>
+                      </span>
+                      <div class="info-content">
+                        <h5 class="user-name">5 Orders placed</h5>
+                        <p class="content"><i class="icon-clock"></i> 1 hour ago</p>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="an-info-single unread">
+                    <a href="#">
+                      <span class="icon-container nutral">
+                        <i class="icon-chat-o"></i>
+                      </span>
+                      <div class="info-content">
+                        <h5 class="user-name">3 New messages </h5>
+                        <p class="content"><i class="icon-clock"></i> 1 hour ago</p>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="an-info-single">
+                    <a href="#">
+                      <span class="icon-container warning">
+                        <i class="icon-alerm"></i>
+                      </span>
+                      <div class="info-content">
+                        <h5 class="user-name">This is warning notification</h5>
+                        <p class="content"><i class="icon-clock"></i> 1 hour ago</p>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="an-info-single">
+                    <a href="#">
+                      <span class="icon-container danger"><i class="icon-danger"></i></span>
+                      <div class="info-content">
+                        <h5 class="user-name">Server loaded by 98% please recover soon</h5>
+                        <p class="content"><i class="icon-clock"></i> 1 hour ago</p>
+                      </div>
+                    </a>
+                  </div>
+                </div> <!-- end .AN-INFO-CONTENT -->
+                <div class="an-info-show-all-btn">
+                  <a class="an-btn an-btn-transparent fluid rounded uppercase small-font" href="#">Show all</a>
+                </div>
+              </div>
+            </div>
+          </div> <!-- end .AN-NOTIFICATION -->
+
+
+          <div class="an-profile-settings">
+            <div class="btn-group an-notifications-dropown  profile">
+              <button type="button" class="an-btn an-btn-icon dropdown-toggle"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="an-profile-img" style="background-image: url('./assets/img/users/user5.jpeg');"></span>
+                <span class="an-user-name">John Smith</span>
+                <span class="an-arrow-nav"><i class="icon-arrow-down"></i></span>
+              </button>
+              <div class="dropdown-menu">
+                <p class="an-info-count">Profile Settings</p>
+                <ul class="an-profile-list">
+                  <li><a href="#"><i class="icon-user"></i>My profile</a></li>
+                  <li><a href="#"><i class="icon-envelop"></i>My inbox</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#"><i class="icon-download-left"></i>Log out</a></li>
+                </ul>
+              </div>
+            </div>
+          </div> <!-- end .AN-PROFILE-SETTINGS -->
+        </div> <!-- end .AN-TOPBAR-RIGHT-PART -->
+      </header> <!-- end .AN-HEADER -->
+
+      <div class="an-notification-content top-full-width">
+        <div class="alert alert-danger  js-nofitication-body" role="alert">
+          <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+          <strong>警告!</strong> 当前未发现可用的客户端，请先安装并运行客户端.
+        </div>
+      </div>
+
+      <div class="an-page-content">
+        <div class="an-sidebar-nav js-sidebar-toggle-with-click">
+          <!--
+          <div class="an-sidebar-search">
+            <form class="an-form" action="#">
+              <a class="collapse-sidebar-search-btn js-search-toggle" href="#"><i class="icon-search"></i></a>
+              <div class="an-search-field topbar js-search-show-clicked">
+                <input class="an-form-control no-redius border-bottom light-text" type="text" placeholder="Search...">
+                <button class="an-btn an-btn-icon sidebar-search" type="submit"><i class="icon-search"></i></button>
+              </div>
+            </form>
+          </div> <!-- end .AN-SIDEBAR-SEARCH -->
+
+          <div class="an-sidebar-widgets agent-count">
+            <div class="widget-signle">
+              <h5 class="counter-result agent-total">0</h5>
+              <p>客户端</p>
+            </div>
+            <div class="widget-signle">
+              <h5 class="counter-result agent-free">0</h5>
+              <p>闲置中</p>
+            </div>
+            <div class="widget-signle">
+              <h5 class="counter-result agent-working">0</h5>
+              <p>任务中</p>
+            </div>
+          </div> <!-- end .AN-SIDEBAR-WIDGETS -->
+
+          <div class="an-sidebar-nav">
+            <ul class="an-main-nav">
+              <li class="an-nav-item current active">
+                <a class=" js-show-child-nav" href="#">
+                  <i class="icon-chart-stock"></i>
+                  <span class="nav-title">控制面板
+                   <!-- <span class="an-arrow-nav"><i class="icon-arrow-down"></i></span> -->
+                  </span>
+                </a>
+                <!--
+                <ul class="an-child-nav js-open-nav">
+                  <li><a href="index.html">Version 1</a></li>
+                  <li><a href="index_2.html">Version 2</a></li>
+                  <li><a href="index_3.html">Version 3</a></li>
+                </ul>
+                -->
+              </li>
+
+
+              <li class="an-nav-item">
+                <a class=" js-show-child-nav" href="#">
+                  <i class="icon-squares"></i>
+                  <span class="nav-title">客户机列表
+                    <span class="an-arrow-nav"><i class="icon-arrow-down"></i></span>
+                  </span>
+                </a>
+                <ul class="an-child-nav js-open-nav js-agent-list">
+                </ul>
+              </li>
+
+              <li class="an-nav-item">
+                <a class=" js-show-child-nav" href="#">
+                  <i class="icon-grid"></i>
+                  <span class="nav-title">任务列表
+                    <span class="an-arrow-nav"><i class="icon-arrow-down"></i></span>
+                  </span>
+                </a>
+                <ul class="an-child-nav js-open-nav">
+                  <li><a href="component-select.html">Select Box</a></li>
+                  <li><a href="component-switch.html">LC Switch</a></li>
+                  <li><a href="component-bs-switch.html">Bootstrap switch</a></li>
+                  <li><a href="component-clipboard.html">Clipboard</a></li>
+                  <li><a href="component-datetime.html">Date Time Picker</a></li>
+                  <li><a href="component-range.html">Ion Range Slider</a></li>
+                  <li><a href="component-tags.html">Tags Input</a></li>
+                </ul>
+              </li>
+
+              <li class="an-nav-item">
+                <a class="" href="inbox.html">
+                  <i class="icon-chat-o"></i>
+                  <span class="nav-title">消息通知 <span class="an-arrow-nav count">3</span></span>
+                </a>
+              </li>
+
+            </ul> <!-- end .AN-MAIN-NAV -->
+          </div> <!-- end .AN-SIDEBAR-NAV -->
+        </div> <!-- end .AN-SIDEBAR-NAV -->
+
+        <div class="an-content-body">
+
+          <div class="an-body-topbar wow fadeIn">
+            <div class="an-page-title">
+              <h2>控制面板</h2>
+              <p>Welcome to use this system
+                <a href="#"><i class="icon-marker"></i>杭州</a>
+              </p>
+            </div>
+
+            <div class="an-daterange-picker">
+              <div id="reportrange" class="pull-right">
+                <i class="icon-calendar"></i>&nbsp;
+                <span></span>
+              </div>
+            </div> <!-- end AN-DATERANGE-PICKER -->
+          </div> <!-- end AN-BODY-TOPBAR -->
+
+          <div class="an-panel-main-info">
+            <div class="row an-agent-info-item">
+            </div> <!-- end .ROW -->
+          </div> <!-- end .AN-PANEL-MAIN-INFO -->
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="an-single-component with-shadow wow fadeIn">
+                <div class="an-component-header">
+                  <h6>CPU运行监听</h6>
+                </div>
+                <div class="an-component-body">
+                  <div class="an-chart-content">
+                    <canvas class="lineChart"></canvas>
+                    <div class="chart-legend js-legend"></div>
+                  </div> <!-- end .AN-CHART-CONTENT -->
+                </div> <!-- end .AN-COMPONENT-BODY -->
+              </div> <!-- end .AN-SINGLE-COMPONENT -->
+            </div>
+
+            <div class="col-md-6">
+              <div class="an-single-component with-shadow wow fadeIn">
+                <div class="an-component-header">
+                  <h6 class="agent-disk-info-header">磁盘监控</h6>
+                  <div class="component-header-right">
+                    <div class="an-settings-button">
+                      <a class="reload" href="#"><i class="icon-loading"></i></a>
+                      <a class="remove" href="#"><i class="icon-close"></i></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="an-component-body">
+                  <div class="an-chart-content doughnut">
+                    <canvas class="doughNut-chart"></canvas>
+
+                    <div class="chart-legend js-legendDoughnut doughnut"></div>
+                  </div> <!-- end .AN-CHART-CONTENT -->
+                </div> <!-- end .AN-COMPONENT-BODY -->
+              </div> <!-- end .AN-SINGLE-COMPONENT -->
+            </div>
+          </div> <!-- end first row -->
+
+          <div class="row">
+            <div class="col-md-3">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="an-single-component with-shadow">
+                    <div class="an-component-header">
+                      <h6>内存监控</h6>
+                      <div class="component-header-right">
+                        <div class="an-settings-button">
+                          <a class="only-hover-remove" href="#"><i class="icon-close"></i></a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="an-component-body">
+                      <div class="an-progressbar-content">
+                        <div class="ancircleprogressbar js-circle">
+                          <div class="value">
+                            <div class="value-holder"></div>
+                            <span>内存占用</span>
+                          </div>
+                        </div>
+                      </div> <!-- end .AN-PROGRESSBAR-CONTENT -->
+                    </div> <!-- end .AN-COMPONENT-BODY -->
+                  </div> <!-- end .AN-SINGLE-COMPONENT -->
+                </div>
+              </div> <!-- end NASTED ROW -->
+            </div>
+          </div>
+
+
+          <div class="an-single-component with-shadow">
+            <div class="an-component-header">
+              <h6>脚本信息</h6>
+              
+              <div class="component-header-right">
+                <form class="an-form" action="#">
+                  <div class="an-search-field">
+                    <input class="an-form-control" type="text" placeholder="Search...">
+                    <button class="an-btn an-btn-icon" type="submit"><i class="icon-search"></i></button>
+                  </div>
+                </form>
+                <div class="an-default-select-wrapper">
+                  <select name="sort">
+                    <option value="0">Show All</option>
+                    <option value="1">Unread</option>
+                    <option value="2">Read</option>
+                  </select>
+                </div>
+                <div class="an-default-header-right">
+                    <button class="an-btn an-btn-icon an-btn-primt add-script" type="button">新建</button>
+                </div>
+              </div>
+            </div>
+            <div class="an-component-body">
+              <div class="an-user-lists messages">
+                <div class="list-title">
+                  <h6 class="basis-20">脚本名称</h6>
+                  <h6 class="basis-20">修改日期</h6>
+                  <h6 class="basis-10">类型</h6>
+                  <h6 class="basis-10">脚本内容</h6>
+                  <h6 class="basis-20">脚本路径</h6>
+                  <h6 class="basis-10">状态</h6>
+                  <h6 class="basis-10">操作</h6>
+                </div>
+
+                <div class="tast-list an-lists-body an-customScrollbar">
+
+
+
+                </div> <!-- end .AN-LISTS-BODY -->
+              </div>
+            </div> <!-- end .AN-COMPONENT-BODY -->
+          </div> <!-- end .AN-SINGLE-COMPONENT messages -->
+
+
+
+        </div> <!-- end .AN-PAGE-CONTENT-BODY -->
+      </div> <!-- end .AN-PAGE-CONTENT -->
+
+
+
+      <footer class="an-footer">
+        <p>COPYRIGHT 2018 © Taole Inc. ALL RIGHTS RESERVED</p>
+      </footer> <!-- end an-footer -->
+
+      <div id="add-script-alert" class="an-single-component">
+        <div class="an-component-header">
+            <h4>添加新的脚本</h4>
+            <div><a class="only-hover-remove add-script-close"  href="#"><i class="icon-close"></i></a></div>
+        </div>
+        <div class="an-component-body">
+            <ul>
+              <li><span class="li-title">脚本类型：</span>
+                <select id="script-type" name="sort">
+                  <option value="1">打包</option>
+                  <option value="2">下载</option>
+                  <option value="3">执行cmd</option>
+                </select>
+              </li>
+              <li class="type1">
+                <span class="li-title">工程所在路径</span>
+                <input type="text" id="script-path">
+              </li>
+              <li class="type1">
+                <span class="li-title">工程的workspace名称</span>
+                <input type="text" id="script-workspace">
+              </li>
+              <li class="type1">
+                <span class="li-title">工程scheme</span>
+                <input type="text" id="script-scheme">
+              </li>
+              <li class="type1">
+                <span class="li-title">工程git远程地址</span>
+                <input type="text" id="script-remote_url">
+              </li>
+              <li class="type1">
+                <span class="li-title">工程的branch分支名称</span>
+                <input type="text" id="script-branch">
+              </li>
+              <li class="type3"><span class="li-title">cmd：</span><input type="text"  id="script-cmd"></li>
+              <li class="type3"><span class="li-title">cwd：</span><input type="text"  id="script-cwd"></li>
+              <li class="type3" ><span class="li-title">async：</span> 
+                <select name=""  id="script-async">
+                  <option value="1">同步</option>
+                  <option value="2">异步</option>
+                </select>
+              </li>
+              <li><button id="script-submit">确认</button></li>
+            </ul>
+        </div>
+          
+      </div>
+    </div> <!-- end .MAIN-WRAPPER -->
+    <script src="plugins/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="plugins/bootstrap.min.js" type="text/javascript"></script>
+    <script src="plugins/moment.min.js" type="text/javascript"></script>
+    <script src="plugins/daterangepicker.js" type="text/javascript"></script>
+    <script src="plugins/wow.min.js" type="text/javascript"></script>
+    <script src="plugins/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+    <script src="plugins/selectize.min.js" type="text/javascript"></script>
+    <script src="plugins/owl.carousel.min.js" type="text/javascript"></script>
+    <script src="plugins/Chart.min.js" type="text/javascript"></script>
+    <script src="plugins/circle-progress.min.js" type="text/javascript"></script>
+
+    <!--  MAIN SCRIPTS START FROM HERE  above scripts from plugin   -->
+    <script src="js/customize-chart.js" type="text/javascript"></script>
+    <script src="js/scripts.js" type="text/javascript"></script>
+    <script src="js/cms-api.js" type="text/javascript"></script>
+    <script src="js/cms-ui.js" type="text/javascript"></script>
+
+    <script>
+
+        var agent_list = [];
+
+        if ($('.js-nofitication-body').length > 0) {
+            $('.js-nofitication-body').hide();
+        }
+
+
+
+
+        function handler_agent_status(success, message, data) {
+            if (!success) {
+                return
+            }
+
+            var cpu_status = [];
+
+            for (agent_status in data) {
+
+                var item = {
+                    "per": data[agent_status].cpu.per,
+                    "time": data[agent_status].update_time,
+                };
+                cpu_status.push(item);
+            }
+            refresh_cpu_status(cpu_status);
+        }
+
+        function show_agent_info(agent) {
+            request_agent_cpu(agent.token, handler_agent_status);
+            request_get_tast_publish(agent.token, reder_tast)
+
+
+            refresh_disk_status(agent.agent.disk);
+            refresh_memory_status(agent.agent.mem);
+        }
+
+        function response(success, message, data) {
+            if (!success) {
+                return
+            }
+
+            $(".agent-total").html(data.count_result.total_agent);
+            $(".agent-free").html(data.count_result.alive_agent);
+            $(".agent_working").html(data.count_result.leave_agent);
+
+            if(data.agent_list.length == 0) {
+                $(".js-nofitication-body").toggle();
+                $('.js-nofitication-body .close').on('click', function () {
+                    $(this).parent().hide();
+                });
+                return
+            }
+
+            agent_list = data.agent_list;
+
+            // 在UI上显示客户端基本信息
+            show_current_agents(data.agent_list);
+
+            current_agent = data.agent_list[0];
+            show_agent_info(current_agent)
+        }
+
+
+
+        request_alive_agent(response);
+        
+
+        request_post_tast_publish(function(success, message, data) {
+          if (!success) {
+                return
+            }
+          console.log(data)
+        })
+
+
+        $('.add-script').on('click', function() {
+          if($('#script-type').val() == 1||2||3) {
+              $('.type1, .type2, .type3').removeClass('show');
+              $('.type' + $('#script-type').val()).addClass('show');
+          }
+          $('#add-script-alert').show()
+        })
+
+        $('.add-script-close').on('click', function () {
+          $('#add-script-alert').hide()
+        })
+    </script>
+  </body>
+</html>
