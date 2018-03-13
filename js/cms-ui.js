@@ -211,7 +211,6 @@ function refresh_memory_status(mem_info) {
                 $(this).children('.value').children('.value-holder').text((v * 100).toFixed() + '%');
             });
     }
-<<<<<<< HEAD
 }
 
 /**
@@ -269,6 +268,21 @@ function refresh_memory_status(mem_info) {
  }
 
 /**
+ * 显示和隐藏新增脚本弹窗
+ */
+$('.add-script').on('click', function() {
+    if($('#script-type').val() == 1||2||3) {
+        $('.type1, .type2, .type3').removeClass('show');
+        $('.type' + $('#script-type').val()).addClass('show');
+    }
+    $('#add-script-alert').show()
+  })
+
+  $('.add-script-close').on('click', function () {
+    $('#add-script-alert').hide()
+  })
+
+/**
  * 区分不同类型脚本的填写样式
  */
 
@@ -278,6 +292,11 @@ function refresh_memory_status(mem_info) {
         $('.type' + $(this).val()).addClass('show');
     }
  })
-=======
-}
->>>>>>> 982ff581ec38ca17f4ded957586e99cb024040ad
+
+ /**
+  * 新脚本上传
+  */
+
+$('#script-submit').on('click', function() {
+    
+})
