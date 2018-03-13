@@ -218,52 +218,73 @@ function refresh_memory_status(mem_info) {
  */
 
  function reder_tast(success, message, data) {
-    console.log(data.length)
     if(!success) {
         alert(message)
+        return
+    }
+
+    if(! Array.isArray(data)){
+        data = [data]
+    }
+
+    if (data.length > 0) {
+        var str = html_content(data) 
+        $('.tast-list').html('')
+        $('.tast-list').prepend(str)
+    }
+ }
+
+ function html_content(data) {
+    var str1 = ''
+    var statusStr = ['被删除','等待下发','等待执行','正在执行','执行成功','执行失败','任务取消']
+    for(var i = 0,len = data.length;i<len;i++) {
+        var str = `<div class="list-user-single">
+        <div class=" basis-30">
+          <p>${data[i]._id}</p>
+        </div>
+        <div class="list-date basis-30">
+          <p>${data[i].updated_time}</p>
+        </div>
+        <div class="list-text basis-10">
+          <p>${data[i].type}</p>
+        </div>
+        <div class="list-state basis-10">
+          <p>${statusStr[data[i].status]}</p>
+        </div>
+        <div class="list-action basis-20">
+          <div class="btn-group">
+            <button type="button" class="an-btn an-btn-icon small dropdown-toggle"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="icon-setting"></i>
+            </button>
+            <div class="dropdown-menu right-align">
+              <ul class="an-basic-list">
+                <li><a href="#">Mark as read</a></li>
+                <li><a href="#">Mark as unread</a></li>
+                <li><a href="#">Select</a></li>
+              </ul>
+            </div>
+          </div>
+          <button class="an-btn an-btn-icon small muted danger"><i class="icon-trash"></i></button>
+        </div>
+      </div>`
+    str1 += str
+    }
+
+    return str1
+ }
+
+ function add_tast(success, message,data) {
+    if(!success) {
+        alert(message)
+        return
+    }
+    if(! Array.isArray(data)){
+        data = [data]
     }
     if (data.length > 0) {
-        var str1 = ''
-        for(var i = 0,len = data.length;i<len;i++) {
-            var str = `<div class="list-user-single">
-            <div class="list-name basis-20">
-              <p>${data[i]._id}</p>
-            </div>
-            <div class="list-date basis-20">
-              <p>${data[i].updated_time}</p>
-            </div>
-            <div class="list-text basis-10">
-              <p>${data[i].type}</p>
-            </div>
-            <div class="list-state basis-10">
-              <p>${data[i].cmd}</p>
-            </div>
-            <div class="list-state basis-20">
-              <p>${data[i].cwd}</p>
-            </div>
-            <div class="list-state basis-10">
-              <p>${data[i].status}</p>
-            </div>
-            <div class="list-action basis-10">
-              <div class="btn-group">
-                <button type="button" class="an-btn an-btn-icon small dropdown-toggle"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="icon-setting"></i>
-                </button>
-                <div class="dropdown-menu right-align">
-                  <ul class="an-basic-list">
-                    <li><a href="#">Mark as read</a></li>
-                    <li><a href="#">Mark as unread</a></li>
-                    <li><a href="#">Select</a></li>
-                  </ul>
-                </div>
-              </div>
-              <button class="an-btn an-btn-icon small muted danger"><i class="icon-trash"></i></button>
-            </div>
-          </div>`
-        str1 += str
-        }
-        $('.tast-list').append(str1)
+        var str = html_content(data)
+        $('.tast-list').prepend(str)
     }
  }
 
@@ -271,8 +292,8 @@ function refresh_memory_status(mem_info) {
  * 显示和隐藏新增脚本弹窗
  */
 $('.add-script').on('click', function() {
-    if($('#script-type').val() == 1||2||3) {
-        $('.type1, .type2, .type3').removeClass('show');
+    if($('#script-type').val() == 1||2||3 || 4) {
+        $('.type1, .type2, .type3, .type4').removeClass('show');
         $('.type' + $('#script-type').val()).addClass('show');
     }
     $('#add-script-alert').show()
@@ -287,9 +308,9 @@ $('.add-script').on('click', function() {
  */
 
  $('#script-type').on('change', function() {
-    if($(this).val() == 1||2||3) {
-        $('.type1, .type2, .type3').removeClass('show');
-        $('.type' + $(this).val()).addClass('show');
+    if($(this).val() == 1||2||3 || 4) {
+        $('.type1, .type2, .type3, .type4').removeClass('show');
+        $('.type' + $('#script-type').val()).addClass('show');
     }
  })
 
@@ -298,5 +319,67 @@ $('.add-script').on('click', function() {
   */
 
 $('#script-submit').on('click', function() {
-    
+    var option = {
+        agent: $('#add-script-alert').data('token'),
+        user: 1,
+        type: '',
+        cmd: '',
+        cwd: '',
+        async: 1,
+        path: '',
+        workspace: '',
+        scheme: '',
+        remote_url: '',
+        branch: ''
+    }
+    var type = +$('#script-type').val(),
+        path = $('#script-path').val(),
+        workspace = $('#script-workspace').val(),
+        scheme = $('#script-scheme').val(),
+        remote_url = $('#script-remote_url').val(),
+        branch = $('#script-branch').val(),
+        cmd = $('#script-cmd').val(),
+        cwd = $('#script-cwd').val(),
+        async = $('#script-async').val();
+
+
+
+    if( type === 1) {
+        if( path && workspace && scheme) {
+            option.type = 1
+            option.path = path
+            option.workspace = workspace
+            option.scheme = scheme
+            
+        } else  if(type === 4 && remote_url && branch && workspace && scheme) {
+            option.type = 1
+            option.remote_url = remote_url
+            option.branch = branch
+            option.workspace = workspace
+            option.scheme = scheme
+        } else {
+            alert('填写内容不全')
+            return false
+        }
+    }else if(type === 3 && cmd && cwd) {
+        option.type = 3
+        option.cmd = cmd
+        option.cwd = cwd
+    }else {
+        alert('cmd或cwd未填写')
+        return false
+    }
+    // request_post_tast_publish(option, function(success, message, data) {
+    //     add_tast(success, message, data)
+    //     $('#add-script-alert').hide()
+    // })
+
 })
+
+/**
+ * 脚本列表刷新
+ */
+
+ $('.script-reload').on('click', function() {
+    request_get_tast_publish($('#add-script-alert').data('token'), reder_tast)
+ })

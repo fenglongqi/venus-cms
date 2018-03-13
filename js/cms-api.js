@@ -27,16 +27,9 @@ function request_get_tast_publish(token,func) {
     }, "json")
 }
 
-function request_post_tast_publish(func) {
+function request_post_tast_publish(option ,func) {
     $.post(HOST + TAST_PUBLIST, 
-        {
-            agent: '187c61e0fa49d079460f4c48becc26b2',
-            user: 1,
-            type: 2,
-            cmd: '',
-            cwd: '~/Desktop/proj/',
-            async: 1
-        }, 
+        option,
         function(data) {
             handler_response(data, func)
     }, "json")

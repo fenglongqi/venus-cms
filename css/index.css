@@ -8,7 +8,7 @@
     top:250px;
     left:0;
     right:0;
-    /* display:none; */
+    display:none;
 }
 #add-script-alert ul {
     list-style: none;
@@ -17,6 +17,11 @@
 }
 #add-script-alert li{
     line-height:28px;
+    margin:10px 0;
+
+}
+#add-script-alert input {
+    width:250px;
 }
 #add-script-alert .li-title {
     display: inline-block;
@@ -29,9 +34,7 @@
     text-align: center;
 }
 .list-name {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
+    text-align: center;
 }
 .ps-scrollbar-y-rail {
     z-index:10;
@@ -39,9 +42,20 @@
 .list-user-single{
     text-align: center;
 }
-.type1, type2, .type3{
+.type1, type2, .type3, .type4{
     display:none;
 }
-.type1 show,.tpye2 show, .type3 .show {
+.type1 show,.tpye2 show, .type3 .show ,.type4 .show{
     display:block;
+}
+.script-reload {
+    display: inline-block;
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.tc{
+    text-align:center;
 }
