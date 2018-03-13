@@ -337,6 +337,9 @@
               <h6>脚本信息</h6>
               
               <div class="component-header-right">
+                <div>
+                    <span class="script-reload"><i class="icon-loading"></i></span>
+                </div>
                 <form class="an-form" action="#">
                   <div class="an-search-field">
                     <input class="an-form-control" type="text" placeholder="Search...">
@@ -358,13 +361,11 @@
             <div class="an-component-body">
               <div class="an-user-lists messages">
                 <div class="list-title">
-                  <h6 class="basis-20">脚本名称</h6>
-                  <h6 class="basis-20">修改日期</h6>
+                  <h6 class="basis-30">脚本名称</h6>
+                  <h6 class="basis-30">修改日期</h6>
                   <h6 class="basis-10">类型</h6>
-                  <h6 class="basis-10">脚本内容</h6>
-                  <h6 class="basis-20">脚本路径</h6>
                   <h6 class="basis-10">状态</h6>
-                  <h6 class="basis-10">操作</h6>
+                  <h6 class="basis-20">操作</h6>
                 </div>
 
                 <div class="tast-list an-lists-body an-customScrollbar">
@@ -394,9 +395,11 @@
         </div>
         <div class="an-component-body">
             <ul>
-              <li><span class="li-title">脚本类型：</span>
+              <li>
+                <span class="li-title">脚本类型：</span>
                 <select id="script-type" name="sort">
-                  <option value="1">打包</option>
+                  <option value="1">直接打包</option>
+                  <option value="4">git打包</option>
                   <option value="2">下载</option>
                   <option value="3">执行cmd</option>
                 </select>
@@ -405,31 +408,39 @@
                 <span class="li-title">工程所在路径</span>
                 <input type="text" id="script-path">
               </li>
-              <li class="type1">
-                <span class="li-title">工程的workspace名称</span>
-                <input type="text" id="script-workspace">
-              </li>
-              <li class="type1">
-                <span class="li-title">工程scheme</span>
-                <input type="text" id="script-scheme">
-              </li>
-              <li class="type1">
+              <li class="type4">
                 <span class="li-title">工程git远程地址</span>
                 <input type="text" id="script-remote_url">
               </li>
-              <li class="type1">
+              <li class="type4">
                 <span class="li-title">工程的branch分支名称</span>
                 <input type="text" id="script-branch">
               </li>
-              <li class="type3"><span class="li-title">cmd：</span><input type="text"  id="script-cmd"></li>
-              <li class="type3"><span class="li-title">cwd：</span><input type="text"  id="script-cwd"></li>
-              <li class="type3" ><span class="li-title">async：</span> 
+              <li class="type1 type4">
+                <span class="li-title">工程的workspace名称</span>
+                <input type="text" id="script-workspace">
+              </li>
+              <li class="type1 type4">
+                <span class="li-title">工程scheme</span>
+                <input type="text" id="script-scheme">
+              </li>
+              <li class="type3">
+                <span class="li-title">cmd：</span><input type="text"  id="script-cmd">
+              </li>
+              <li class="type3">
+                <span class="li-title">cwd：</span>
+                <input type="text"  id="script-cwd">
+              </li>
+              <li class="type3" >
+                <span class="li-title">async：</span> 
                 <select name=""  id="script-async">
                   <option value="1">同步</option>
                   <option value="2">异步</option>
                 </select>
               </li>
-              <li><button id="script-submit">确认</button></li>
+              <li class="tc">
+                <button id="script-submit">确认</button>
+              </li>
             </ul>
         </div>
           
@@ -454,7 +465,7 @@
 
     <script>
 
-        var agent_list = [];
+        var agent_list = []
 
         if ($('.js-nofitication-body').length > 0) {
             $('.js-nofitication-body').hide();
@@ -484,6 +495,7 @@
         function show_agent_info(agent) {
             request_agent_cpu(agent.token, handler_agent_status);
             request_get_tast_publish(agent.token, reder_tast)
+            $('#add-script-alert').data('token',agent.token)
 
 
             refresh_disk_status(agent.agent.disk);
@@ -516,20 +528,8 @@
             show_agent_info(current_agent)
         }
 
-
-
         request_alive_agent(response);
-        
-
-        request_post_tast_publish(function(success, message, data) {
-          if (!success) {
-                return
-            }
-          console.log(data)
-        })
-
-
-        
+                
     </script>
   </body>
 </html>
