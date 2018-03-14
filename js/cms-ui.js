@@ -343,7 +343,7 @@ $('#script-submit').on('click', function() {
         async = $('#script-async').val();
 
 
-
+    console.log(type, remote_url, branch,workspace,scheme)
     if( type === 1) {
         if( path && workspace && scheme) {
             option.type = 1
@@ -351,28 +351,37 @@ $('#script-submit').on('click', function() {
             option.workspace = workspace
             option.scheme = scheme
             
-        } else  if(type === 4 && remote_url && branch && workspace && scheme) {
+        } else{
+            alert('填写内容不全')
+            return false
+        }
+    } else if(type === 3 && cmd && cwd) {
+        if(cmd && cwd) {
+            option.type = 3
+            option.cmd = cmd
+            option.cwd = cwd
+        }else {
+            alert('cmd或cwd未填写')
+            return false
+        }
+    } else if(type === 4) {
+        if(remote_url && branch && workspace && scheme) {
+            alert(type)
             option.type = 1
             option.remote_url = remote_url
             option.branch = branch
             option.workspace = workspace
             option.scheme = scheme
-        } else {
+        }else {
             alert('填写内容不全')
             return false
         }
-    }else if(type === 3 && cmd && cwd) {
-        option.type = 3
-        option.cmd = cmd
-        option.cwd = cwd
-    }else {
-        alert('cmd或cwd未填写')
-        return false
+        
     }
-    // request_post_tast_publish(option, function(success, message, data) {
-    //     add_tast(success, message, data)
-    //     $('#add-script-alert').hide()
-    // })
+    request_post_tast_publish(option, function(success, message, data) {
+        add_tast(success, message, data)
+        $('#add-script-alert').hide()
+    })
 
 })
 
