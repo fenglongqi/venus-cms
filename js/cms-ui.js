@@ -366,7 +366,6 @@ $('#script-submit').on('click', function() {
         }
     } else if(type === 4) {
         if(remote_url && branch && workspace && scheme) {
-            alert(type)
             option.type = 1
             option.remote_url = remote_url
             option.branch = branch
