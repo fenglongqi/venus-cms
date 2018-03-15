@@ -3,7 +3,8 @@ HOST = "http://192.168.20.65:4389";
 
 AGENT_LIST = "/alive/agent";
 AGENT_CPU = "/alive/agentcpu";
-TAST_PUBLIST = "/task/publish"
+TASK_PUBLIST = "/task/publish"
+TASK_RESULT = '/task/result'
 
 function request_agent_cpu(token, func) {
     $.get(HOST+AGENT_CPU, {token: token}, function (data) {
@@ -19,17 +20,25 @@ function request_alive_agent(func) {
 }
 
 
-function request_get_tast_publish(token,func) {
-    $.get(HOST + TAST_PUBLIST,
+function request_get_task_publish(token,func) {
+    $.get(HOST + TASK_PUBLIST,
         {token: token},
         function(data) {
             handler_response(data, func)
     }, "json")
 }
 
-function request_post_tast_publish(option ,func) {
-    $.post(HOST + TAST_PUBLIST, 
+function request_post_task_publish(option ,func) {
+    $.post(HOST + TASK_PUBLIST,
         option,
+        function(data) {
+            handler_response(data, func)
+    }, "json")
+}
+
+function request_task_result(task_id, func) {
+    $.get(HOST + TASK_RESULT,
+        {task_id: task_id},
         function(data) {
             handler_response(data, func)
     }, "json")
