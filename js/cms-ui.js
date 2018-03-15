@@ -217,7 +217,7 @@ function refresh_memory_status(mem_info) {
  * 脚本列表渲染
  */
 
- function reder_tast(success, message, data) {
+ function reder_task(success, message, data) {
     if(!success) {
         alert(message)
         return
@@ -229,8 +229,8 @@ function refresh_memory_status(mem_info) {
 
     if (data.length > 0) {
         var str = html_content(data) 
-        $('.tast-list').html('')
-        $('.tast-list').prepend(str)
+        $('.task-list').html('')
+        $('.task-list').prepend(str)
     }
  }
 
@@ -240,7 +240,7 @@ function refresh_memory_status(mem_info) {
     for(var i = 0,len = data.length;i<len;i++) {
         var str = `<div class="list-user-single">
         <div class=" basis-30">
-          <p>${data[i]._id}</p>
+          <p class="task-id">${data[i]._id}</p>
         </div>
         <div class="list-date basis-30">
           <p>${data[i].updated_time}</p>
@@ -249,7 +249,7 @@ function refresh_memory_status(mem_info) {
           <p>${data[i].type}</p>
         </div>
         <div class="list-state basis-10">
-          <p>${statusStr[data[i].status]}</p>
+          <p class="task-status">${statusStr[data[i].status]}</p>
         </div>
         <div class="list-action basis-20">
           <div class="btn-group">
@@ -274,7 +274,7 @@ function refresh_memory_status(mem_info) {
     return str1
  }
 
- function add_tast(success, message,data) {
+ function add_task(success, message,data) {
     if(!success) {
         alert(message)
         return
@@ -284,7 +284,7 @@ function refresh_memory_status(mem_info) {
     }
     if (data.length > 0) {
         var str = html_content(data)
-        $('.tast-list').prepend(str)
+        $('.task-list').prepend(str)
     }
  }
 
@@ -377,8 +377,8 @@ $('#script-submit').on('click', function() {
         }
         
     }
-    request_post_tast_publish(option, function(success, message, data) {
-        add_tast(success, message, data)
+    request_post_task_publish(option, function(success, message, data) {
+        add_task(success, message, data)
         $('#add-script-alert').hide()
     })
 
@@ -389,5 +389,28 @@ $('#script-submit').on('click', function() {
  */
 
  $('.script-reload').on('click', function() {
-    request_get_tast_publish($('#add-script-alert').data('token'), reder_tast)
+    request_get_task_publish($('#add-script-alert').data('token'), reder_task)
  })
+
+
+ /**
+  * 脚本执行结果查询
+  */
+
+$('.task-list').on('click','.list-user-single',function() {
+    var status = $(this).find('.task-status').text()
+    if( status == '执行成功' ||status == '执行失败') {
+    request_task_result($(this).find('.task-id').text(), function (success, message, data) {
+        if(!success) {
+            alert(message)
+            return;
+        }
+        $('.task-result-alert').show()
+        $('.task-result-message').text(data)
+    })
+    }
+})
+
+$('.result-alert-close-btn').on('click', function() {
+    $('.task-result-alert').hide()
+})

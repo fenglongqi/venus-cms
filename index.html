@@ -332,7 +332,7 @@
           </div>
 
 
-          <div class="an-single-component with-shadow">
+          <div class="an-single-component with-shadow" id="script-content">
             <div class="an-component-header">
               <h6>脚本信息</h6>
               
@@ -368,7 +368,7 @@
                   <h6 class="basis-20">操作</h6>
                 </div>
 
-                <div class="tast-list an-lists-body an-customScrollbar">
+                <div class="task-list an-lists-body an-customScrollbar">
 
 
 
@@ -445,6 +445,15 @@
         </div>
           
       </div>
+
+      <div class="task-result-alert">
+        <h5>脚本执行结果<i class="result-alert-close-btn result-alert-close icon-close"></i></h5>
+        <p class="task-result-message"></p>
+        <div class="tc">
+            <button class="result-alert-close-btn result-close-btn">关闭</button>
+        </div>
+        
+      </div>
     </div> <!-- end .MAIN-WRAPPER -->
     <script src="plugins/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src="plugins/bootstrap.min.js" type="text/javascript"></script>
@@ -494,7 +503,7 @@
 
         function show_agent_info(agent) {
             request_agent_cpu(agent.token, handler_agent_status);
-            request_get_tast_publish(agent.token, reder_tast)
+            request_get_task_publish(agent.token, reder_task)
             $('#add-script-alert').data('token',agent.token)
 
 
@@ -509,7 +518,7 @@
 
             $(".agent-total").html(data.count_result.total_agent);
             $(".agent-free").html(data.count_result.alive_agent);
-            $(".agent_working").html(data.count_result.leave_agent);
+            $(".agent_working").html(data.count_result.working_agent);
 
             if(data.agent_list.length == 0) {
                 $(".js-nofitication-body").toggle();
