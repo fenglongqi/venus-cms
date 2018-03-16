@@ -25,127 +25,8 @@
         <img src="img/loader.png" alt="">
       </div>
 
-      <header class="an-header wow fadeInDown">
 
-        <div class="an-topbar-left-part">
-          <h3 class="an-logo-heading">
-            <a class="an-logo-link" href="index.html">淘乐
-              <span>AutoBuild System</span>
-            </a>
-          </h3>
-          <button class="an-btn an-btn-icon toggle-button js-toggle-sidebar">
-            <i class="icon-list"></i>
-          </button>
-          <!--
-          <form class="an-form" action="#">
-            <div class="an-search-field topbar">
-              <input class="an-form-control" type="text" placeholder="Search...">
-              <button class="an-btn an-btn-icon" type="submit">
-                <i class="icon-search"></i>
-              </button>
-            </div>
-          </form>
-          -->
-        </div> <!-- end .AN-TOPBAR-LEFT-PART -->
-
-        <div class="an-topbar-right-part">
-          <div class="an-notifications">
-            <div class="btn-group an-notifications-dropown notifications">
-              <button type="button"
-                class="an-btn an-btn-icon dropdown-toggle js-has-new-notification"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="ion-ios-bell-outline"></i>
-              </button>
-              <div class="dropdown-menu">
-                <p class="an-info-count">Notifications <span>3</span></p>
-                <div class="an-info-content notifications-info notifications-content">
-                  <div class="an-info-single unread">
-                    <a href="#">
-                      <span class="icon-container important">
-                        <i class="icon-setting"></i>
-                      </span>
-                      <div class="info-content">
-                        <h5 class="user-name">Settings updated</h5>
-                        <p class="content"><i class="icon-clock"></i> 30 min ago</p>
-                      </div>
-                    </a>
-                  </div>
-
-                  <div class="an-info-single unread">
-                    <a href="#">
-                      <span class="icon-container success">
-                        <i class="icon-cart"></i>
-                      </span>
-                      <div class="info-content">
-                        <h5 class="user-name">5 Orders placed</h5>
-                        <p class="content"><i class="icon-clock"></i> 1 hour ago</p>
-                      </div>
-                    </a>
-                  </div>
-
-                  <div class="an-info-single unread">
-                    <a href="#">
-                      <span class="icon-container nutral">
-                        <i class="icon-chat-o"></i>
-                      </span>
-                      <div class="info-content">
-                        <h5 class="user-name">3 New messages </h5>
-                        <p class="content"><i class="icon-clock"></i> 1 hour ago</p>
-                      </div>
-                    </a>
-                  </div>
-
-                  <div class="an-info-single">
-                    <a href="#">
-                      <span class="icon-container warning">
-                        <i class="icon-alerm"></i>
-                      </span>
-                      <div class="info-content">
-                        <h5 class="user-name">This is warning notification</h5>
-                        <p class="content"><i class="icon-clock"></i> 1 hour ago</p>
-                      </div>
-                    </a>
-                  </div>
-
-                  <div class="an-info-single">
-                    <a href="#">
-                      <span class="icon-container danger"><i class="icon-danger"></i></span>
-                      <div class="info-content">
-                        <h5 class="user-name">Server loaded by 98% please recover soon</h5>
-                        <p class="content"><i class="icon-clock"></i> 1 hour ago</p>
-                      </div>
-                    </a>
-                  </div>
-                </div> <!-- end .AN-INFO-CONTENT -->
-                <div class="an-info-show-all-btn">
-                  <a class="an-btn an-btn-transparent fluid rounded uppercase small-font" href="#">Show all</a>
-                </div>
-              </div>
-            </div>
-          </div> <!-- end .AN-NOTIFICATION -->
-
-
-          <div class="an-profile-settings">
-            <div class="btn-group an-notifications-dropown  profile">
-              <button type="button" class="an-btn an-btn-icon dropdown-toggle"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="an-profile-img" style="background-image: url('./assets/img/users/user5.jpeg');"></span>
-                <span class="an-user-name">John Smith</span>
-                <span class="an-arrow-nav"><i class="icon-arrow-down"></i></span>
-              </button>
-              <div class="dropdown-menu">
-                <p class="an-info-count">Profile Settings</p>
-                <ul class="an-profile-list">
-                  <li><a href="#"><i class="icon-user"></i>My profile</a></li>
-                  <li><a href="#"><i class="icon-envelop"></i>My inbox</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#"><i class="icon-download-left"></i>Log out</a></li>
-                </ul>
-              </div>
-            </div>
-          </div> <!-- end .AN-PROFILE-SETTINGS -->
-        </div> <!-- end .AN-TOPBAR-RIGHT-PART -->
-      </header> <!-- end .AN-HEADER -->
+      <header id="header" class="an-header wow fadeInDown"></header>
 
       <div class="an-notification-content top-full-width">
         <div class="alert alert-danger  js-nofitication-body" role="alert">
@@ -154,91 +35,9 @@
         </div>
       </div>
 
-      <div class="an-page-content">
-        <div class="an-sidebar-nav js-sidebar-toggle-with-click">
-          <!--
-          <div class="an-sidebar-search">
-            <form class="an-form" action="#">
-              <a class="collapse-sidebar-search-btn js-search-toggle" href="#"><i class="icon-search"></i></a>
-              <div class="an-search-field topbar js-search-show-clicked">
-                <input class="an-form-control no-redius border-bottom light-text" type="text" placeholder="Search...">
-                <button class="an-btn an-btn-icon sidebar-search" type="submit"><i class="icon-search"></i></button>
-              </div>
-            </form>
-          </div> <!-- end .AN-SIDEBAR-SEARCH -->
-
-          <div class="an-sidebar-widgets agent-count">
-            <div class="widget-signle">
-              <h5 class="counter-result agent-total">0</h5>
-              <p>客户端</p>
-            </div>
-            <div class="widget-signle">
-              <h5 class="counter-result agent-free">0</h5>
-              <p>闲置中</p>
-            </div>
-            <div class="widget-signle">
-              <h5 class="counter-result agent-working">0</h5>
-              <p>任务中</p>
-            </div>
-          </div> <!-- end .AN-SIDEBAR-WIDGETS -->
-
-          <div class="an-sidebar-nav">
-            <ul class="an-main-nav">
-              <li class="an-nav-item current active">
-                <a class=" js-show-child-nav" href="#">
-                  <i class="icon-chart-stock"></i>
-                  <span class="nav-title">控制面板
-                   <!-- <span class="an-arrow-nav"><i class="icon-arrow-down"></i></span> -->
-                  </span>
-                </a>
-                <!--
-                <ul class="an-child-nav js-open-nav">
-                  <li><a href="index.html">Version 1</a></li>
-                  <li><a href="index_2.html">Version 2</a></li>
-                  <li><a href="index_3.html">Version 3</a></li>
-                </ul>
-                -->
-              </li>
-
-
-              <li class="an-nav-item">
-                <a class=" js-show-child-nav" href="#">
-                  <i class="icon-squares"></i>
-                  <span class="nav-title">客户机列表
-                    <span class="an-arrow-nav"><i class="icon-arrow-down"></i></span>
-                  </span>
-                </a>
-                <ul class="an-child-nav js-open-nav js-agent-list">
-                </ul>
-              </li>
-
-              <li class="an-nav-item">
-                <a class=" js-show-child-nav" href="#">
-                  <i class="icon-grid"></i>
-                  <span class="nav-title">任务列表
-                    <span class="an-arrow-nav"><i class="icon-arrow-down"></i></span>
-                  </span>
-                </a>
-                <ul class="an-child-nav js-open-nav">
-                  <li><a href="component-select.html">Select Box</a></li>
-                  <li><a href="component-switch.html">LC Switch</a></li>
-                  <li><a href="component-bs-switch.html">Bootstrap switch</a></li>
-                  <li><a href="component-clipboard.html">Clipboard</a></li>
-                  <li><a href="component-datetime.html">Date Time Picker</a></li>
-                  <li><a href="component-range.html">Ion Range Slider</a></li>
-                  <li><a href="component-tags.html">Tags Input</a></li>
-                </ul>
-              </li>
-
-              <li class="an-nav-item">
-                <a class="" href="inbox.html">
-                  <i class="icon-chat-o"></i>
-                  <span class="nav-title">消息通知 <span class="an-arrow-nav count">3</span></span>
-                </a>
-              </li>
-
-            </ul> <!-- end .AN-MAIN-NAV -->
-          </div> <!-- end .AN-SIDEBAR-NAV -->
+      <div  class="an-page-content">
+        <div id="sidebar" class="an-sidebar-nav js-sidebar-toggle-with-click">
+          
         </div> <!-- end .AN-SIDEBAR-NAV -->
 
         <div class="an-content-body">
@@ -384,8 +183,8 @@
 
 
 
-      <footer class="an-footer">
-        <p>COPYRIGHT 2018 © Taole Inc. ALL RIGHTS RESERVED</p>
+      <footer id="footer" class="an-footer">
+        
       </footer> <!-- end an-footer -->
 
       <div id="add-script-alert" class="an-single-component">
@@ -424,6 +223,21 @@
                 <span class="li-title">工程scheme</span>
                 <input type="text" id="script-scheme">
               </li>
+              <li class="type1 type4">
+                <span class="li-title">证书</span>
+                <select name="" id="script-cer-id">
+
+                </select>
+                <button id="add-cer" type="button">添加证书</button>
+              </li>
+              <li class="type1 type4">
+                <span class="li-title">证书密码</span>
+                <input type="password" id="script-cer-pass">
+              </li>
+              <li class="type1 type4">
+                <span class="li-title">客户端密码</span>
+                <input type="text" id="script-agent-pass">
+              </li>
               <li class="type3">
                 <span class="li-title">cmd：</span><input type="text"  id="script-cmd">
               </li>
@@ -454,9 +268,22 @@
         </div>
         
       </div>
+
+      <div class="add-cer">
+          <h5>添加新证书</h5>
+          <div><input id="cer-file" name="p12" type="file"></div>
+          <div><button class="submit-cer">上传证书</button></div>
+      </div>
     </div> <!-- end .MAIN-WRAPPER -->
     <script src="plugins/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src="plugins/bootstrap.min.js" type="text/javascript"></script>
+
+    <!-- 渲染组件 -->
+    <script src="components/head.js"></script>
+    <script src="components/sidebar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="js/render.js"></script>
+
     <script src="plugins/moment.min.js" type="text/javascript"></script>
     <script src="plugins/daterangepicker.js" type="text/javascript"></script>
     <script src="plugins/wow.min.js" type="text/javascript"></script>
@@ -465,6 +292,7 @@
     <script src="plugins/owl.carousel.min.js" type="text/javascript"></script>
     <script src="plugins/Chart.min.js" type="text/javascript"></script>
     <script src="plugins/circle-progress.min.js" type="text/javascript"></script>
+    <!-- <script src="/plugins/mustache.min.js"></script> -->
 
     <!--  MAIN SCRIPTS START FROM HERE  above scripts from plugin   -->
     <script src="js/customize-chart.js" type="text/javascript"></script>
@@ -472,72 +300,92 @@
     <script src="js/cms-api.js" type="text/javascript"></script>
     <script src="js/cms-ui.js" type="text/javascript"></script>
 
+
+
+
+
     <script>
+      
 
         var agent_list = []
-
-        if ($('.js-nofitication-body').length > 0) {
+          if ($('.js-nofitication-body').length > 0) {
             $('.js-nofitication-body').hide();
-        }
+          }
 
 
 
 
-        function handler_agent_status(success, message, data) {
-            if (!success) {
-                return
+          function handler_agent_status(success, message, data) {
+              if (!success) {
+                  return
+              }
+
+              var cpu_status = [];
+
+              for (agent_status in data) {
+
+                  var item = {
+                      "per": data[agent_status].cpu.per,
+                      "time": data[agent_status].update_time,
+                  };
+                  cpu_status.push(item);
+              }
+              refresh_cpu_status(cpu_status);
+          }
+
+          function show_agent_info(agent) {
+              request_agent_cpu(agent.token, handler_agent_status);
+              request_get_task_publish(agent.token, reder_task)
+              $('#add-script-alert').data('token',agent.token)
+
+
+              refresh_disk_status(agent.agent.disk);
+              refresh_memory_status(agent.agent.mem);
+          }
+
+          function response(success, message, data) {
+              if (!success) {
+                  return
+              }
+
+              $(".agent-total").html(data.count_result.total_agent);
+              $(".agent-free").html(data.count_result.alive_agent);
+              $(".agent_working").html(data.count_result.working_agent);
+
+              if(data.agent_list.length == 0) {
+                  $(".js-nofitication-body").toggle();
+                  $('.js-nofitication-body .close').on('click', function () {
+                      $(this).parent().hide();
+                  });
+                  return
+              }
+
+              agent_list = data.agent_list;
+
+              // 在UI上显示客户端基本信息
+              show_current_agents(data.agent_list);
+
+              current_agent = data.agent_list[0];
+              show_agent_info(current_agent)
+          }
+
+          request_alive_agent(response);
+          
+          
+          request_cer_list(function(success, msg, data){
+            if(!success) {
+              alert(msg)
+              return
             }
-
-            var cpu_status = [];
-
-            for (agent_status in data) {
-
-                var item = {
-                    "per": data[agent_status].cpu.per,
-                    "time": data[agent_status].update_time,
-                };
-                cpu_status.push(item);
+  
+            for(var i = 0, len = data.length;i<len; i++) {
+              $('#script-cer-id').append('<option value='+data[i]._id+'>'+data[i].file_name+'</option>')
             }
-            refresh_cpu_status(cpu_status);
-        }
+          })
+           
+      
 
-        function show_agent_info(agent) {
-            request_agent_cpu(agent.token, handler_agent_status);
-            request_get_task_publish(agent.token, reder_task)
-            $('#add-script-alert').data('token',agent.token)
-
-
-            refresh_disk_status(agent.agent.disk);
-            refresh_memory_status(agent.agent.mem);
-        }
-
-        function response(success, message, data) {
-            if (!success) {
-                return
-            }
-
-            $(".agent-total").html(data.count_result.total_agent);
-            $(".agent-free").html(data.count_result.alive_agent);
-            $(".agent_working").html(data.count_result.working_agent);
-
-            if(data.agent_list.length == 0) {
-                $(".js-nofitication-body").toggle();
-                $('.js-nofitication-body .close').on('click', function () {
-                    $(this).parent().hide();
-                });
-                return
-            }
-
-            agent_list = data.agent_list;
-
-            // 在UI上显示客户端基本信息
-            show_current_agents(data.agent_list);
-
-            current_agent = data.agent_list[0];
-            show_agent_info(current_agent)
-        }
-
-        request_alive_agent(response);
+        
                 
     </script>
   </body>
