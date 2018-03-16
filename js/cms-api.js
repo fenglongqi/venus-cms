@@ -1,10 +1,12 @@
 /*---------- API ---------*/
 HOST = "http://127.0.0.1:4389";
 
-AGENT_LIST = "/alive/agent";
-AGENT_CPU = "/alive/agentcpu";
-TASK_PUBLIST = "/task/publish"
+AGENT_LIST = '/alive/agent'
+AGENT_CPU = '/alive/agentcpu'
+TASK_PUBLIST = '/task/publish'
 TASK_RESULT = '/task/result'
+CER_UPLOAD = '/cer/upload'
+CER_LIST = '/cer/list'
 
 function request_agent_cpu(token, func) {
     $.get(HOST+AGENT_CPU, {token: token}, function (data) {
@@ -39,6 +41,29 @@ function request_post_task_publish(option ,func) {
 function request_task_result(task_id, func) {
     $.get(HOST + TASK_RESULT,
         {task_id: task_id},
+        function(data) {
+            handler_response(data, func)
+    }, "json")
+}
+
+
+function request_cer_upload(formData, func) {
+
+    $.ajax({
+        type:'POST',
+        url:HOST + CER_UPLOAD,
+        data:formData,
+        processData: false,
+        contentType : false,
+        dataType: 'json',
+        success: function(data) {
+            handler_response(data, func)
+        }
+    })
+}
+
+function request_cer_list(func) {
+    $.get(HOST + CER_LIST,
         function(data) {
             handler_response(data, func)
     }, "json")
