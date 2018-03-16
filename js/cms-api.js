@@ -1,5 +1,5 @@
 /*---------- API ---------*/
-HOST = "http://192.168.20.65:4389";
+HOST = "http://127.0.0.1:4389";
 
 AGENT_LIST = "/alive/agent";
 AGENT_CPU = "/alive/agentcpu";
