@@ -56,6 +56,45 @@
     font-size: 20px;
     cursor: pointer;
 }
+.task-result-alert{
+    position:fixed;
+    z-index:12;
+    width:500px;
+    height:auto;
+    background:#eeeeee;
+    margin:auto;
+    top:300px;
+    left:0;
+    right:0;
+    display:none;
+    padding-bottom: 5px;
+}
+.task-result-alert h5{
+    text-align: center;
+    margin: 0;
+    background: rgb(7, 215, 252);
+    padding: 10px 0;
+    color:#fff;
+}
+.task-result-message{
+    line-height:1.6em;
+    margin-left:10px;
+}
+.result-alert-close{
+    float:right;
+    font-size:20px;
+    margin-right: 20px;
+    margin-top: -4px;
+    cursor: pointer;
+}
+.result-close-btn {
+    width:150px;
+    background:rgb(110, 253, 241);
+    border:0;
+    line-height:1.5em;
+    font-size:16px;
+    border-radius:5px;
+}
 .tc{
     text-align:center;
 }
