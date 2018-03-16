@@ -340,16 +340,22 @@ $('#script-submit').on('click', function() {
         branch = $('#script-branch').val(),
         cmd = $('#script-cmd').val(),
         cwd = $('#script-cwd').val(),
-        async = $('#script-async').val();
+        async = $('#script-async').val(),
+        cer_id = $('#script-cer-id').val(),
+        cer_pass = $('#script-cer-pass').val(),
+        agent_pass = $('#script-agent-pass').val();
 
 
-    console.log(type, remote_url, branch,workspace,scheme)
+    console.log(type, cer_id, cer_pass,agent_pass,scheme)
     if( type === 1) {
-        if( path && workspace && scheme) {
+        if( path && workspace && scheme && cer_id && cer_pass && agent_pass) {
             option.type = 1
             option.path = path
             option.workspace = workspace
             option.scheme = scheme
+            option.cer_id = cer_id
+            option.cer_pass = cer_pass
+            option.agent_pass = agent_pass
             
         } else{
             alert('填写内容不全')
@@ -365,18 +371,22 @@ $('#script-submit').on('click', function() {
             return false
         }
     } else if(type === 4) {
-        if(remote_url && branch && workspace && scheme) {
+        if(remote_url && branch && workspace && scheme && cer_id && cer_pass && agent_pass) {
             option.type = 1
             option.remote_url = remote_url
             option.branch = branch
             option.workspace = workspace
             option.scheme = scheme
+            option.cer_id = cer_id
+            option.cer_pass = cer_pass
+            option.agent_pass = agent_pass
         }else {
             alert('填写内容不全')
             return false
         }
         
     }
+    // console.log(option)
     request_post_task_publish(option, function(success, message, data) {
         add_task(success, message, data)
         $('#add-script-alert').hide()
@@ -414,3 +424,27 @@ $('.task-list').on('click','.list-user-single',function() {
 $('.result-alert-close-btn').on('click', function() {
     $('.task-result-alert').hide()
 })
+
+
+/**
+ * 添加证书
+ */
+$('#add-cer').on('click', function() {
+    $('.add-cer').show()
+  })
+  $('.submit-cer').on('click', function() {
+      console.log($('#cer-file').get(0).files[0])
+      var formData = new FormData();
+        formData.append("p12",$('#cer-file').get(0).files[0]);
+      request_cer_upload(formData,function(success, msg, data) {
+        if(!success) {
+            alert(msg)
+            $('.add-cer').hide()
+            return false
+        }
+        var data = [data]
+        $('#script-cer-id').append('<option value='+data._id+'>'+data.file_name+'</option>')
+        alert('添加成功')
+        $('.add-cer').hide()
+      })
+  })

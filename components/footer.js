@@ -1,0 +1,1 @@
+_footer = `<p>COPYRIGHT 2018 © Taole Inc. ALL RIGHTS RESERVED</p>`
