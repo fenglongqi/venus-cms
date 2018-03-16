@@ -54,9 +54,9 @@ _sidebar = `<div class="an-sidebar-widgets agent-count">
   </li>
 
   <li class="an-nav-item">
-    <a class="" href="inbox.html">
+    <a class="" href="./email.html">
       <i class="icon-chat-o"></i>
-      <span class="nav-title">消息通知 <span class="an-arrow-nav count">3</span></span>
+      <span class="nav-title">邮件列表</span>
     </a>
   </li>
 
