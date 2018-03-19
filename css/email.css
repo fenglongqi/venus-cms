@@ -1,4 +1,4 @@
-.add-email {
+.add-email ,.edit-email-alert{
     position:fixed;
     z-index:12;
     top:200px;
@@ -10,12 +10,22 @@
     text-align: center;
     display:none;
 }
-.add-email h5{
+.add-email h5,.edit-email-alert h5{
     background:#fff;
     padding:10px 0;
     margin:0;
     text-align: center;
 }
-.add-email div{
+.add-email div,.edit-email-alert div{
     margin: 15px 0;
+}
+.add-email-close{
+    float:right;
+    margin-right:10px;
+    cursor:pointer;
+}
+.edit-email-close{
+    float:right;
+    margin-right:10px;
+    cursor:pointer;
 }

@@ -68,7 +68,7 @@
                                     <span class="script-reload"><i class="icon-loading"></i></span>
                                 </div>
                                 <div class="an-default-header-right">
-                                    <button id="add-success-email" class="an-btn an-btn-icon an-btn-primt" type="button">添加</button>
+                                    <button id="add-success-email" class="an-btn an-btn-icon add-content an-btn-primt" data-type="2" type="button">添加</button>
                                 </div>
                                 </div>
                             </div>
@@ -102,7 +102,7 @@
                                     <span class="script-reload"><i class="icon-loading"></i></span>
                                 </div>
                                 <div class="an-default-header-right">
-                                    <button id="add-fail-email" class="an-btn an-btn-icon an-btn-primt add-script" type="button">添加</button>
+                                    <button id="add-fail-email" data-type="1" class="an-btn an-btn-icon add-content an-btn-primt " type="button">添加</button>
                                 </div>
                                 </div>
                             </div>
@@ -115,8 +115,22 @@
                                     <h6></h6>
                                 </div>
                 
-                                <div id="faile-list" class=" an-lists-body an-customScrollbar">
-                                    
+                                <div id="fail-list" class=" an-lists-body an-customScrollbar">
+                                    <div  class="list-user-single contact-item" data-id="${data[i]._id}">            
+                                        <div class="basis-40">
+                                            <p>${data[i].user_id}</p>
+                                        </div>
+                                        <div class="basis-50">
+                                            <p>${data[i].email}</p>
+                                        </div>
+                                        <div class="basis-10">
+                                            <button type="button" class="an-btn an-btn-icon small edit-email dropdown-toggle"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="icon-setting"></i>
+                                            </button>
+                                            <button  class="delete-btn an-btn an-btn-icon small muted danger"><i class="icon-trash"></i></button>   
+                                        </div>
+                                    </div>
                 
                 
                                 </div> <!-- end .AN-LISTS-BODY -->
@@ -135,10 +149,19 @@
       <footer id="footer" class="an-footer"></footer> <!-- end an-footer -->
 
       <div class="add-email">
-          <h5>添加新的联系人</h5>
-          <div>用户名<input type="text"></div>
-          <div>邮箱地址<input type="text"></div>
+          <h5>添加新的联系人 <span class="add-email-close">X</span></h5>
+          <div>邮箱地址<input id="email-address" type="text"></div>
+          <div class="add-submit"><button>添加</button></div>
       </div>
+      <div class="edit-email-alert">
+        <h5>修改联系人<span class="edit-email-close">X</span></h5>
+        <div>邮箱地址<input id="edit-email-address" type="text"></div>
+        <div>联系人类型<select name="" id="se-type">
+            <option value="1">失败</option>
+            <option value="2">成功</option>
+        </select></div>
+        <div class="edit-submit"><button>修改</button></div>
+    </div>
     </div> <!-- end .MAIN-WRAPPER -->
     <script src="plugins/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src="plugins/bootstrap.min.js" type="text/javascript"></script>
@@ -171,11 +194,12 @@
 
 
       function renderEmail(data, $el) {
+        $el.html('')
         var str = ''
         for(var i=0,len = data.length;i<len;i++) {
             if(data[i].status == 1) {
                 var emailStr =
-                    `<div  class="list-user-single">           
+                    `<div  class="list-user-single contact-item" data-type="${data[i].type}" data-id="${data[i]._id}">           
                         <div class="basis-40">
                             <p>${data[i].user_id}</p>
                         </div>
@@ -183,11 +207,11 @@
                             <p>${data[i].email}</p>
                         </div>
                         <div class="basis-10">
-                            <button type="button" class="an-btn an-btn-icon small dropdown-toggle"
+                            <button type="button" class="edit-email an-btn an-btn-icon small dropdown-toggle"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="icon-setting"></i>
                             </button>
-                            <button class="an-btn an-btn-icon small muted danger"><i class="icon-trash"></i></button>   
+                            <button  class="delete-btn an-btn an-btn-icon small muted danger"><i class="icon-trash"></i></button>   
                         </div>
                     </div>`
                 
@@ -212,23 +236,121 @@
       })
 
 
-      //获取失败发送列表
-      request_contect_list(1,function(success,msg, data) {
-        if(!success) {
-            alert(msg)
-            return false
+      //获取列表信息
+      function renderList () {
+          //获取失败发送列表
+        request_contact_list({type:1},function(success,msg, data) {
+            if(!success) {
+                alert(msg)
+                return false
+            }
+            renderEmail(data,$('#fail-list'))
+        })
+
+        //获取成功发送列表
+        request_contact_list({type:2},function(success,msg, data) {
+            if(!success) {
+                alert(msg)
+                return false
+            }
+            renderEmail(data,$('#success-list'))
+        })
+      }
+
+      renderList()
+      
+
+
+      //添加新的联系人
+      $('.add-content').on('click',function(){
+          $('.add-email').show()
+          $('.add-email').data('type',$(this).data('type'))
+      })
+      
+      $('.add-email-close').on('click', function() {
+        $('.add-email').hide()
+      })
+      $('.add-submit').on('click', function() {
+        console.log($('.add-email').data('type'))
+        var email = $('#email-address').val()
+        console.log(email)
+        if(email) {
+            var option = {
+                email : email,
+                type : $('.add-email').data('type')
+            }
+            console.log(option)
+            $('.add-email').hide()
+            request_contact_add(option, function(success, msg, data) {
+                if(!success) {
+                    alert(msg)
+                    return false
+                }
+                
+                renderList()
+                $('.add-email').hide()
+                
+            })
         }
-        renderEmail($('#faile-list'),data)
+        
       })
 
-      //获取成功发送列表
-      request_contect_list(2,function(success,msg, data) {
-        if(!success) {
-            alert(msg)
-            return false
-        }
-        renderEmail($('#faile-list'),data)
+        //删除
+      $('#fail-list,#success-list').on('click','.delete-btn',function(){
+          let _id = $(this).parents('.contact-item').data('id');
+          console.log(_id)
+          if(confirm('确定要删除吗')) {
+              request_contact_delete(_id, function(success,msg,data) {
+                  if(success) {
+                      alert('删除成功')
+                      renderList()
+                  }else{
+                      alert(msg)
+                      return false
+                  }
+              })
+          }
       })
+
+      //更改
+      $('#fail-list,#success-list').on('click','.edit-email',function() {
+          $('.edit-email-alert').show()
+          $('.edit-email-alert').data('type', $(this).parents('.contact-item').data('type'))
+          $('.edit-email-alert').data('id',$(this).parents('.contact-item').data('id'))
+          $('#se-type').val($('.edit-email-alert').data('type'))
+      })
+      
+      $('.edit-email-close').on('click',function() {
+        $('.edit-email-alert').hide()
+      })
+      $('.edit-submit').on('click', function() {
+          var option = ''
+        if($('.edit-email-alert').data('type') == $('#se-type').val()){
+            option = {
+                email: $('#edit-email-address').val(),
+                _id: $('.edit-email-alert').data('id')
+            }
+        }else {
+            option = {
+                email: $('#edit-email-address').val(),
+                _id: $('.edit-email-alert').data('id'),
+                type: $('#se-type').val()
+            }
+
+        }
+
+        retuqst_contact_edit(option, function(success,msg,data) {
+                if(success) {
+                    alert('修改成功！')
+                    $('.edit-email-alert').hide()
+                    renderList()
+                }else {
+                    alert(msg)
+                    return false;
+                }
+            })       
+      })
+
         
                 
     </script>

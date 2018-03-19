@@ -1,5 +1,5 @@
 /*---------- API ---------*/
-HOST = "http://192.168.20.65:4389";
+HOST = "http://192.168.20.59:4389";
 
 AGENT_LIST = '/alive/agent'
 AGENT_CPU = '/alive/agentcpu'
@@ -8,6 +8,9 @@ TASK_RESULT = '/task/result'
 CER_UPLOAD = '/cer/upload'
 CER_LIST = '/cer/list'
 CONTACT_LIST = '/contact/list'
+CONTACT_ADD = '/contact/add'
+CONTACT_DELET = '/contact/delete'
+CONTACT_EDIT = '/contact/edit'
 
 
 
@@ -77,14 +80,39 @@ function request_cer_list(func) {
 }
 
 //获取联系人列表
-function request_contect_list(type, func) {
+function request_contact_list(type, func) {
     $.get(HOST + CONTACT_LIST,
+        type,
         function(data) {
-            {type}
             handler_response(data, func)
     }, "json")
 }
 
+//添加新的联系人
+function request_contact_add(option, func) {
+    $.post(HOST + CONTACT_ADD,
+        option,
+        function(data) {
+            handler_response(data, func)
+    }, "json")
+}
+
+//删除联系人
+function request_contact_delete (_id,func) {
+    $.post(HOST + CONTACT_DELET,
+        {_id},
+        function(data) {
+            handler_response(data, func)
+    }, "json")
+}
+//修改联系人
+function retuqst_contact_edit (option, func) {
+    $.post(HOST + CONTACT_EDIT,
+        option,
+        function(data) {
+            handler_response(data, func)
+    }, "json")
+}
 
 function handler_response(origin_data, func) {
     if (origin_data === null) {

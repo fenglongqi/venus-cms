@@ -41,10 +41,14 @@ function show_current_agents(agent_list) {
                          "</div>", [agent.info.os + " (" + agent.info.version + ")", agent.info.remote_ip, agent.info.token]);
 
         $(".an-agent-info-item").append($(agent_text))
+        
     }
+    
 
     (function (agent_list) {
         $('.an-panel-main-info-single').on('click', function (e) {
+            $('.an-panel-main-info-single').css('background','#70c1b3')
+            $(this).css('background','rgb(196, 204, 86)')
             for (var i = agent_list.length - 1; i >= 0; i--) {
                 var agent = agent_list[i];
                 if (agent.token === $(this).attr("id")) {

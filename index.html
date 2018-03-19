@@ -351,6 +351,7 @@
               $(".agent-total").html(data.count_result.total_agent);
               $(".agent-free").html(data.count_result.alive_agent);
               $(".agent_working").html(data.count_result.working_agent);
+              
 
               if(data.agent_list.length == 0) {
                   $(".js-nofitication-body").toggle();
@@ -367,6 +368,7 @@
 
               current_agent = data.agent_list[0];
               show_agent_info(current_agent)
+              $('.an-panel-main-info-single').eq(0).css('background','rgb(196, 204, 86)')
           }
 
           request_alive_agent(response);
