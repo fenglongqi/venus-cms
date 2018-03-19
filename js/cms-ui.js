@@ -348,13 +348,13 @@ $('#script-submit').on('click', function() {
 
     console.log(type, cer_id, cer_pass,agent_pass,scheme)
     if( type === 1) {
-        if( path && workspace && scheme && cer_id && cer_pass && agent_pass) {
+        if( path && workspace && scheme && cer_id && agent_pass) {
             option.type = 1
             option.path = path
             option.workspace = workspace
             option.scheme = scheme
             option.cer_id = cer_id
-            option.cer_pass = cer_pass
+            option.cer_pass = cer_pass || ''
             option.agent_pass = agent_pass
             
         } else{
@@ -371,14 +371,14 @@ $('#script-submit').on('click', function() {
             return false
         }
     } else if(type === 4) {
-        if(remote_url && branch && workspace && scheme && cer_id && cer_pass && agent_pass) {
+        if(remote_url && branch && workspace && scheme && cer_id && agent_pass) {
             option.type = 1
             option.remote_url = remote_url
             option.branch = branch
             option.workspace = workspace
             option.scheme = scheme
             option.cer_id = cer_id
-            option.cer_pass = cer_pass
+            option.cer_pass = cer_pass || ''
             option.agent_pass = agent_pass
         }else {
             alert('填写内容不全')

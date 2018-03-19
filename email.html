@@ -173,20 +173,26 @@
       function renderEmail(data, $el) {
         var str = ''
         for(var i=0,len = data.length;i<len;i++) {
-            var emailStr =
-            `<div  class="list-user-single">           
-                <div class="basis-40">
-                    <p>${data[i].name}</p>
-                </div>
-                <div class="basis-50">
-                    <p>${data[i].email_src}</p>
-                </div>
-                <div class="basis-10">
-                    <button class="an-btn an-btn-icon small muted danger"><i class="icon-trash"></i></button>   
-                </div>
-            </div>`
-            
-            str +=emailStr
+            if(data[i].status == 1) {
+                var emailStr =
+                    `<div  class="list-user-single">           
+                        <div class="basis-40">
+                            <p>${data[i].user_id}</p>
+                        </div>
+                        <div class="basis-50">
+                            <p>${data[i].email}</p>
+                        </div>
+                        <div class="basis-10">
+                            <button type="button" class="an-btn an-btn-icon small dropdown-toggle"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-setting"></i>
+                            </button>
+                            <button class="an-btn an-btn-icon small muted danger"><i class="icon-trash"></i></button>   
+                        </div>
+                    </div>`
+                
+                str +=emailStr
+            }
         }
 
         $el.append(str)
@@ -203,6 +209,25 @@
         $(".agent-total").html(data.count_result.total_agent);
         $(".agent-free").html(data.count_result.alive_agent);
         $(".agent_working").html(data.count_result.working_agent);
+      })
+
+
+      //获取失败发送列表
+      request_contect_list(1,function(success,msg, data) {
+        if(!success) {
+            alert(msg)
+            return false
+        }
+        renderEmail($('#faile-list'),data)
+      })
+
+      //获取成功发送列表
+      request_contect_list(2,function(success,msg, data) {
+        if(!success) {
+            alert(msg)
+            return false
+        }
+        renderEmail($('#faile-list'),data)
       })
         
                 
