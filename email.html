@@ -10,7 +10,7 @@
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/vendor-styles.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/diploma.css">
+    <link rel="stylesheet" href="css/email.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,7 +41,7 @@
         <div class="an-content-body">
           <div class="an-body-topbar wow fadeIn">
             <div class="an-page-title">
-              <h2>添加证书</h2>
+              <h2>邮件列表</h2>
               <p>Welcome to use this system
                 <a href="#"><i class="icon-marker"></i>杭州</a>
               </p>
@@ -61,40 +61,61 @@
                     <div class="col-sm-12">
                         <div class="an-single-component with-shadow" id="script-content">
                             <div class="an-component-header">
-                                <h6>证书信息</h6>
+                                <h6>打包成功发送邮件列表</h6>
                                 
                                 <div class="component-header-right">
                                 <div>
                                     <span class="script-reload"><i class="icon-loading"></i></span>
                                 </div>
-                                <form class="an-form" action="#">
-                                    <div class="an-search-field">
-                                    <input class="an-form-control" type="text" placeholder="Search...">
-                                    <button class="an-btn an-btn-icon" type="submit"><i class="icon-search"></i></button>
-                                    </div>
-                                </form>
-                                <div class="an-default-select-wrapper">
-                                    <select name="sort">
-                                    <option value="0">Show All</option>
-                                    <option value="1">Unread</option>
-                                    <option value="2">Read</option>
-                                    </select>
-                                </div>
                                 <div class="an-default-header-right">
-                                    <button id="add-cer" class="an-btn an-btn-icon an-btn-primt add-script" type="button">新建</button>
+                                    <button id="add-success-email" class="an-btn an-btn-icon an-btn-primt" type="button">添加</button>
                                 </div>
                                 </div>
                             </div>
                             <div class="an-component-body">
                                 <div class="an-user-lists messages">
                                 <div class="list-title">
-                                    <h6 class="basis-40">证书名称</h6>
-                                    <h6 class="basis-40">证书ID</h6>
-                                    <h6 class="basis-20">证书状态</h6>
+                                    <h6 class="basis-40">收件人</h6>
+                                    <h6 class="basis-50">邮箱地址</h6>
+                                    <h6 class="basis-10">管理</h6>
                                     <h6></h6>
                                 </div>
                 
-                                <div id="cer-content" class=" an-lists-body an-customScrollbar">
+                                <div id="success-list" class=" an-lists-body an-customScrollbar">
+                                    
+                
+                
+                                </div> <!-- end .AN-LISTS-BODY -->
+                                </div>
+                            </div> <!-- end .AN-COMPONENT-BODY -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="an-single-component with-shadow" id="script-content">
+                            <div class="an-component-header">
+                                <h6>打包失败发送邮件列表</h6>
+                                
+                                <div class="component-header-right">
+                                <div>
+                                    <span class="script-reload"><i class="icon-loading"></i></span>
+                                </div>
+                                <div class="an-default-header-right">
+                                    <button id="add-fail-email" class="an-btn an-btn-icon an-btn-primt add-script" type="button">添加</button>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="an-component-body">
+                                <div class="an-user-lists messages">
+                                <div class="list-title">
+                                    <h6 class="basis-40">收件人</h6>
+                                    <h6 class="basis-50">邮箱地址</h6>
+                                    <h6 class="basis-10">管理</h6>
+                                    <h6></h6>
+                                </div>
+                
+                                <div id="faile-list" class=" an-lists-body an-customScrollbar">
                                     
                 
                 
@@ -106,27 +127,18 @@
                 </div>
             </div> <!-- end .ROW -->
           </div> <!-- end .AN-PANEL-MAIN-INFO -->
-          <div class="add-cer">
-              <h5>添加新证书</h5>
-              <div><input id="cer-file" name="p12" type="file"></div>
-              <div><button class="submit-cer">上传证书</button></div>
-          </div>
-
-          
-
-
-
-
-
-
         </div> <!-- end .AN-PAGE-CONTENT-BODY -->
       </div> <!-- end .AN-PAGE-CONTENT -->
 
 
 
-      <footer id="footer" class="an-footer">
-        
-        </footer> <!-- end an-footer -->
+      <footer id="footer" class="an-footer"></footer> <!-- end an-footer -->
+
+      <div class="add-email">
+          <h5>添加新的联系人</h5>
+          <div>用户名<input type="text"></div>
+          <div>邮箱地址<input type="text"></div>
+      </div>
     </div> <!-- end .MAIN-WRAPPER -->
     <script src="plugins/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src="plugins/bootstrap.min.js" type="text/javascript"></script>
@@ -157,53 +169,35 @@
           $('.js-nofitication-body').hide();
       }
 
-      request_cer_list(function(success, msg, data) {
-          if(!success) {
-              alert(msg)
-              return false
-          }
-          console.log(data);
-          renderCerList(data)
-      })
 
-      $('#add-cer').on('click', function() {
-        $('.add-cer').show()
-      })
-      $('.submit-cer').on('click', function() {
-          console.log($('#cer-file').get(0).files[0])
-          var formData = new FormData();
-            formData.append("p12",$('#cer-file').get(0).files[0]);
-          request_cer_upload(formData,function(success, msg, data) {
-            if(!success) {
-                alert(msg)
-                $('.add-cer').hide()
-                return false
+      function renderEmail(data, $el) {
+        var str = ''
+        for(var i=0,len = data.length;i<len;i++) {
+            if(data[i].status == 1) {
+                var emailStr =
+                    `<div  class="list-user-single">           
+                        <div class="basis-40">
+                            <p>${data[i].user_id}</p>
+                        </div>
+                        <div class="basis-50">
+                            <p>${data[i].email}</p>
+                        </div>
+                        <div class="basis-10">
+                            <button type="button" class="an-btn an-btn-icon small dropdown-toggle"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-setting"></i>
+                            </button>
+                            <button class="an-btn an-btn-icon small muted danger"><i class="icon-trash"></i></button>   
+                        </div>
+                    </div>`
+                
+                str +=emailStr
             }
-            var data = [data]
-            renderCerList(data)
-            alert('添加成功')
-            $('.add-cer').hide()
-          })
-      })
-      function renderCerList(data) {
-        let str = ''
-          for(var i = 0,len = data.length;i<len;i++) {
-            var cerList = `
-                        <div  class="list-user-single">           
-                        <div class="basis-40">
-                            <p>${data[i].file_name}</p>
-                        </div>
-                        <div class="basis-40">
-                            <p>${data[i]._id}</p>
-                        </div>
-                        <div class="basis-20">
-                            <p>${data[i].status == 1 ?'正常':'被删除'}</p>
-                        </div></div>`
-            str +=cerList;
-          }
+        }
 
-          $('#cer-content').append(str)
-          
+        $el.append(str)
+        
+        
       }
 
       request_alive_agent(function(success, msg, data) {
@@ -218,8 +212,23 @@
       })
 
 
+      //获取失败发送列表
+      request_contect_list(1,function(success,msg, data) {
+        if(!success) {
+            alert(msg)
+            return false
+        }
+        renderEmail($('#faile-list'),data)
+      })
 
-
+      //获取成功发送列表
+      request_contect_list(2,function(success,msg, data) {
+        if(!success) {
+            alert(msg)
+            return false
+        }
+        renderEmail($('#faile-list'),data)
+      })
         
                 
     </script>
