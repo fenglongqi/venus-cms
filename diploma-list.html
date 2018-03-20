@@ -62,7 +62,7 @@
             </div> <!-- end .ROW -->
           </div> <!-- end .AN-PANEL-MAIN-INFO -->
           <div class="add-cer">
-              <h5>添加新证书</h5>
+              <h5>添加新证书<i class="add-cer-close icon-close"></i></h5>
               <div><input id="cer-file" name="p12" type="file"></div>
               <div>证书密码：<input id="cer-pass" type="text"></div>
               <div>客户端密码：<input id="agent-pass" type="text"></div>
@@ -118,7 +118,6 @@
               alert(msg)
               return false
           }
-          console.log(data);
           renderCerList(data)
       })
 
@@ -130,15 +129,11 @@
 
 
       $('.submit-cer').on('click', function() {
-        console.log(1)
           var formData = new FormData();
             formData.append("p12",$('#cer-file').get(0).files[0]);
             formData.append('cer_pass',$('#cer-pass').val())
             formData.append('agent_pass',$('#agent-pass').val())
-            // console.log($('.add-cer').data('token'))
-            // alert(window.localStorage['token'])
             formData.append('token',window.localStorage['token'])
-            // console.log(formData)
           request_cer_upload(formData,function(success, msg, data) {
 
             if(!success) {
@@ -147,14 +142,12 @@
                 return false
             }
             var data = [data]
-            // renderCerList(data)
+            renderCerList(data)
             alert('添加成功')
             $('.add-cer').hide()
           })
       })
       function renderCerList(data) {
-        
-        
         for(var i = 0;i<data.length;i++) {
           var  str = ''
           for(var j = 0,len = data[i].cer_list.length;j<len;j++) {
@@ -214,10 +207,18 @@
             alert(msg)
             return false
         }
-
+        for (var i = data.agent_list.length - 1; i >= 0; i--) {
+          var agent = agent_list[i];
+          var li = $("<li><a href=''>" + agent.info.remote_ip + "</a></li>");
+          $(".js-agent-list").append(li)
+        }
         $(".agent-total").html(data.count_result.total_agent);
         $(".agent-free").html(data.count_result.alive_agent);
         $(".agent_working").html(data.count_result.working_agent);
+      })
+
+      $('.add-cer-close').on('click', function() {
+        $('.add-cer').hide()
       })
 
 

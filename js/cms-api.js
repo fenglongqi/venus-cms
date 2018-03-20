@@ -59,7 +59,6 @@ function request_task_result(task_id, func) {
 
 //上传新证书
 function request_cer_upload(formData, func) {
-    console.log('ajax')
     $.ajax({
         type:'POST',
         url:HOST + CER_UPLOAD,

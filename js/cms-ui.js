@@ -351,7 +351,6 @@ $('#script-submit').on('click', function() {
         agent_pass = $('#script-agent-pass').val();
 
 
-    console.log(type, cer_id, cer_pass,agent_pass,scheme)
     if( type === 1) {
         if( path && workspace && scheme) {
             option.type = 1
@@ -384,7 +383,7 @@ $('#script-submit').on('click', function() {
         }
         
     }
-    console.log(option)
+    // console.log(option)
     request_post_task_publish(option, function(success, message, data) {
         add_task(success, message, data)
         $('#add-script-alert').hide()

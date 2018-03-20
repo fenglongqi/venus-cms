@@ -19,3 +19,9 @@
 .add-cer div{
     margin: 15px 0;
 }
+.add-cer-close{
+    float:right;
+    font-size:18px;
+    margin-right:15px;
+    cursor: pointer;
+}

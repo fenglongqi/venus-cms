@@ -182,7 +182,6 @@
     <!--  MAIN SCRIPTS START FROM HERE  above scripts from plugin-->
     <script src="js/scripts.js" type="text/javascript"></script>
     <script src="js/cms-api.js" type="text/javascript"></script>
-    <script src="js/cms-ui.js" type="text/javascript"></script>
 
     <script>
 
@@ -228,6 +227,12 @@
         if(!success) {
             alert(msg)
             return false
+        }
+        console.log(data)
+        for (var i = data.agent_list.length - 1; i >= 0; i--) {
+          var agent = agent_list[i];
+          var li = $("<li><a href=''>" + agent.info.remote_ip + "</a></li>");
+          $(".js-agent-list").append(li)
         }
 
         $(".agent-total").html(data.count_result.total_agent);
