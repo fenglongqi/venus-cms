@@ -230,14 +230,6 @@
                 </select>
                 <button id="add-cer" type="button">添加证书</button>
               </li>
-              <li class="type1 type4">
-                <span class="li-title">证书密码</span>
-                <input type="password" id="script-cer-pass">
-              </li>
-              <li class="type1 type4">
-                <span class="li-title">客户端密码</span>
-                <input type="text" id="script-agent-pass">
-              </li>
               <li class="type3">
                 <span class="li-title">cmd：</span><input type="text"  id="script-cmd">
               </li>
@@ -269,11 +261,6 @@
         
       </div>
 
-      <div class="add-cer">
-          <h5>添加新证书</h5>
-          <div><input id="cer-file" name="p12" type="file"></div>
-          <div><button class="submit-cer">上传证书</button></div>
-      </div>
     </div> <!-- end .MAIN-WRAPPER -->
     <script src="plugins/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src="plugins/bootstrap.min.js" type="text/javascript"></script>
@@ -373,19 +360,27 @@
 
           request_alive_agent(response);
           
-          
-          request_cer_list(function(success, msg, data){
-            if(!success) {
-              alert(msg)
-              return
-            }
-  
-            for(var i = 0, len = data.length;i<len; i++) {
-              if(data[i].status == 1) {
-                $('#script-cer-id').append('<option value='+data[i]._id+'>'+data[i].file_name+'</option>')
+          function render_select_list() {
+            request_cer_list(function(success, msg, data){
+              if(!success) {
+                alert(msg)
+                return
               }
-            }
-          })
+              console.log($('#add-script-alert').data('token'))
+              for(var i = 0, len = data.length;i<len; i++) {
+                if(data[i].agent_info.token == $('#add-script-alert').data('token')){
+                  for(var j = 0 , length = data[i].cer_list.length;j<len;j++) {
+                    if(data[i].cer_list[j].status == 1) {
+                      $('#script-cer-id').append('<option value='+data[i].cer_list[j]._id+'>'+data[i].cer_list[j].file_name+'</option>')
+                    }
+                  }
+                }
+                
+                
+              }
+            })
+          }
+          
            
       
 

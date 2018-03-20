@@ -57,59 +57,16 @@
 
           <div class="an-panel-main-info">
             <div class="row an-agent-info-item">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="an-single-component with-shadow" id="script-content">
-                            <div class="an-component-header">
-                                <h6>证书信息</h6>
-                                
-                                <div class="component-header-right">
-                                <div>
-                                    <span class="script-reload"><i class="icon-loading"></i></span>
-                                </div>
-                                <form class="an-form" action="#">
-                                    <div class="an-search-field">
-                                    <input class="an-form-control" type="text" placeholder="Search...">
-                                    <button class="an-btn an-btn-icon" type="submit"><i class="icon-search"></i></button>
-                                    </div>
-                                </form>
-                                <div class="an-default-select-wrapper">
-                                    <select name="sort">
-                                    <option value="0">Show All</option>
-                                    <option value="1">Unread</option>
-                                    <option value="2">Read</option>
-                                    </select>
-                                </div>
-                                <div class="an-default-header-right">
-                                    <button id="add-cer" class="an-btn an-btn-icon an-btn-primt add-script" type="button">新建</button>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="an-component-body">
-                                <div class="an-user-lists messages">
-                                <div class="list-title">
-                                    <h6 class="basis-40">证书名称</h6>
-                                    <h6 class="basis-40">证书ID</h6>
-                                    <h6 class="basis-20">证书状态</h6>
-                                    <h6></h6>
-                                </div>
-                
-                                <div id="cer-content" class=" an-lists-body an-customScrollbar">
-                                    
-                
-                
-                                </div> <!-- end .AN-LISTS-BODY -->
-                                </div>
-                            </div> <!-- end .AN-COMPONENT-BODY -->
-                        </div>
-                    </div>
+                <div class="row cer-list-row">
                 </div>
             </div> <!-- end .ROW -->
           </div> <!-- end .AN-PANEL-MAIN-INFO -->
           <div class="add-cer">
               <h5>添加新证书</h5>
               <div><input id="cer-file" name="p12" type="file"></div>
-              <div><button class="submit-cer">上传证书</button></div>
+              <div>证书密码：<input id="cer-pass" type="text"></div>
+              <div>客户端密码：<input id="agent-pass" type="text"></div>
+              <div><button type="button" class="submit-cer">上传证书</button></div>
           </div>
 
           
@@ -147,7 +104,6 @@
     <!--  MAIN SCRIPTS START FROM HERE  above scripts from plugin-->
     <script src="js/scripts.js" type="text/javascript"></script>
     <script src="js/cms-api.js" type="text/javascript"></script>
-    <script src="js/cms-ui.js" type="text/javascript"></script>
 
     <script>
 
@@ -166,43 +122,90 @@
           renderCerList(data)
       })
 
-      $('#add-cer').on('click', function() {
+      $('.cer-list-row').on('click','.add-cer-btn', function() {
         $('.add-cer').show()
+        var s = $(this).parents('.script-content').data('token')
+        window.localStorage.token = s;
       })
+
+
       $('.submit-cer').on('click', function() {
-          console.log($('#cer-file').get(0).files[0])
+        console.log(1)
           var formData = new FormData();
             formData.append("p12",$('#cer-file').get(0).files[0]);
+            formData.append('cer_pass',$('#cer-pass').val())
+            formData.append('agent_pass',$('#agent-pass').val())
+            // console.log($('.add-cer').data('token'))
+            // alert(window.localStorage['token'])
+            formData.append('token',window.localStorage['token'])
+            // console.log(formData)
           request_cer_upload(formData,function(success, msg, data) {
+
             if(!success) {
                 alert(msg)
                 $('.add-cer').hide()
                 return false
             }
             var data = [data]
-            renderCerList(data)
+            // renderCerList(data)
             alert('添加成功')
             $('.add-cer').hide()
           })
       })
       function renderCerList(data) {
-        let str = ''
-          for(var i = 0,len = data.length;i<len;i++) {
+        
+        
+        for(var i = 0;i<data.length;i++) {
+          var  str = ''
+          for(var j = 0,len = data[i].cer_list.length;j<len;j++) {
             var cerList = `
                         <div  class="list-user-single">           
                         <div class="basis-40">
-                            <p>${data[i].file_name}</p>
+                            <p>${data[i].cer_list[j].file_name}</p>
                         </div>
                         <div class="basis-40">
-                            <p>${data[i]._id}</p>
+                            <p>${data[i].cer_list[j]._id}</p>
                         </div>
                         <div class="basis-20">
-                            <p>${data[i].status == 1 ?'正常':'被删除'}</p>
+                            <p>${data[i].cer_list[j].status == 1 ?'正常':'被删除'}</p>
                         </div></div>`
             str +=cerList;
           }
+          var mainStr = 
+            `<div class="col-sm-12">
+              <div class="an-single-component with-shadow script-content" data-token="${data[i].agent_info.token}">
+                  <div class="an-component-header">
+                      <h6>${data[i].agent_info.remote_ip}证书信息</h6>
+                      <div class="component-header-right">
+                      <div>
+                          <span class="script-reload"><i class="icon-loading"></i></span>
+                      </div>
+                      <div class="an-default-header-right">
+                          <button  class="add-cer-btn an-btn an-btn-icon an-btn-primt add-script" type="button">新建</button>
+                      </div>
+                      </div>
+                  </div>
+                  <div class="an-component-body">
+                      <div class="an-user-lists messages">
+                      <div class="list-title">
+                          <h6 class="basis-40">证书名称</h6>
+                          <h6 class="basis-40">证书ID</h6>
+                          <h6 class="basis-20">证书状态</h6>
+                          <h6></h6>
+                      </div>
+      
+                      <div  class="cer-content an-lists-body an-customScrollbar">
+                          ${str}
+                      </div> <!-- end .AN-LISTS-BODY -->
+                      </div>
+                  </div> <!-- end .AN-COMPONENT-BODY -->
+              </div>
+          </div>`
+          $('.cer-list-row').append(mainStr)
+        }
+          
 
-          $('#cer-content').append(str)
+          
           
       }
 

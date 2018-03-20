@@ -18,8 +18,8 @@ _sidebar = `<div class="an-sidebar-widgets agent-count">
   <li class="an-nav-item current active">
     <a class="" href="./index.html">
       <i class="icon-chart-stock"></i>
-      <span class="nav-title">
-      </span>控制面板
+      <span class="nav-title">控制面板
+      </span>
     </a>
   </li>
 
@@ -43,13 +43,7 @@ _sidebar = `<div class="an-sidebar-widgets agent-count">
       </span>
     </a>
     <ul class="an-child-nav js-open-nav">
-      <li><a href="./diploma.html">添加证书</a></li>
       <li><a href="./diploma-list.html">证书列表</a></li>
-      <li><a href="component-bs-switch.html">Bootstrap switch</a></li>
-      <li><a href="component-clipboard.html">Clipboard</a></li>
-      <li><a href="component-datetime.html">Date Time Picker</a></li>
-      <li><a href="component-range.html">Ion Range Slider</a></li>
-      <li><a href="component-tags.html">Tags Input</a></li>
     </ul>
   </li>
 
