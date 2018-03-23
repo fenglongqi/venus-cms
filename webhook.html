@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Taole Auto Build System</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/vendor-styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/webhook.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div class="an-loader-container">
+        <img src="img/loader.png" alt="">
+      </div>
+
+      <header id="header" class="an-header wow fadeInDown">
+      </header> <!-- end .AN-HEADER -->
+
+      <div class="an-notification-content top-full-width">
+        <div class="alert alert-danger  js-nofitication-body" role="alert">
+          <button type="button" class="close"><span aria-hidden="true">&times;</span></button>
+          <strong>警告!</strong> 当前未发现可用的客户端，请先安装并运行客户端.
+        </div>
+      </div>
+
+      <div class="an-page-content">
+        <div id="sidebar" class="an-sidebar-nav js-sidebar-toggle-with-click">
+        </div>
+        <div class="an-content-body">
+          <div class="an-body-topbar wow fadeIn">
+            <div class="an-page-title">
+              <h2>webHock</h2>
+              <p>Welcome to use this system
+                <a href="#"><i class="icon-marker"></i>杭州</a>
+              </p>
+            </div>
+
+            <div class="an-daterange-picker">
+              <div id="reportrange" class="pull-right">
+                <i class="icon-calendar"></i>&nbsp;
+                <span></span>
+              </div>
+            </div> <!-- end AN-DATERANGE-PICKER -->
+          </div> <!-- end AN-BODY-TOPBAR -->
+
+          <div class="an-panel-main-info">
+            <div class="row">
+              <div class="" ><button id="add-btn">添加</button></div>
+            </div>
+            <div class="row an-agent-info-item">
+                <div class="row hook-list">
+                    
+                </div>
+            </div> <!-- end .ROW -->
+          </div> <!-- end .AN-PANEL-MAIN-INFO -->
+        </div> <!-- end .AN-PAGE-CONTENT-BODY -->
+      </div> <!-- end .AN-PAGE-CONTENT -->
+
+
+
+      <footer id="footer" class="an-footer"></footer> <!-- end an-footer -->
+
+      <div id="add-script-alert" class="an-single-component">
+          <div class="an-component-header">
+              <h4>添加新的webhook</h4>
+              <div><a class="only-hover-remove add-script-close"  href="javascript:void(0)"><i class="icon-close"></i></a></div>
+          </div>
+          <div class="an-component-body">
+              <ul>
+                <li>
+                  <span class="li-title">钩子类型：</span>
+                  <select id="script-type" name="sort">
+                    <option value="1">github</option>
+                    <option value="2">gitlab</option>
+                  </select>
+                </li>
+                <li class="type1">
+                  <span class="li-title">数据仓库的url地址</span>
+                  <input type="text" id="script-ssh-url">
+                </li>
+                <li class="type4">
+                  <span class="li-title">工程的branch分支名称</span>
+                  <input type="text" id="script-branch">
+                </li>
+                <li class="type4">
+                  <span class="li-event li-title">hook的事件类型</span>
+                  <select id="script-event" name="sort">
+                      <option value="1">push</option>
+                      <option value="2">commit</option>
+                    </select>
+                </li>
+                <li class="type1 type4">
+                  <span class="li-title">工程的workspace名称</span>
+                  <input type="text" id="script-workspace">
+                </li>
+                <li class="type1 type4">
+                  <span class="li-title">工程scheme</span>
+                  <input type="text" id="script-scheme">
+                </li>
+                <li class="type1 type4">
+                  <span class="li-title">hook时的处理方式</span>
+                  <select name="" id="script-handler">
+                      <option value="1">执行打包任务</option>
+                      <option value="2">更新代码到agent</option>
+                  </select>
+                </li>
+                <li class="type3">
+                  <span class="li-title">agent：</span>
+                  <select name="" id="script-agent">
+
+                  </select>
+                </li>
+                <li class="tc">
+                  <button id="script-submit">确认</button>
+                </li>
+              </ul>
+          </div>
+            
+        </div>
+    </div> <!-- end .MAIN-WRAPPER -->
+    <script src="plugins/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="plugins/bootstrap.min.js" type="text/javascript"></script>
+
+    <!-- 渲染组件 -->
+    <script src="components/head.js"></script>
+    <script src="components/sidebar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="js/render.js"></script>
+
+
+    <script src="plugins/moment.min.js" type="text/javascript"></script>
+    <script src="plugins/daterangepicker.js" type="text/javascript"></script>
+    <script src="plugins/wow.min.js" type="text/javascript"></script>
+    <script src="plugins/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+    <script src="plugins/selectize.min.js" type="text/javascript"></script>
+
+    <!--  MAIN SCRIPTS START FROM HERE  above scripts from plugin-->
+    <script src="js/scripts.js" type="text/javascript"></script>
+    <script src="js/cms-api.js" type="text/javascript"></script>
+
+    <script>
+
+        
+
+      if ($('.js-nofitication-body').length > 0) {
+          $('.js-nofitication-body').hide();
+      }
+
+
+      function list_render (data) {
+        console.log(data)
+        for(var i = 0; i<data.length;i++) {
+          var str = 
+            `<div class="col-sm-12 col-xs-12 hook-list-item">
+              <h5 class="hook-list-title">钩子<span data-id="${data[i]._id}" class="close icon-close"></span></h5>
+              <div class="hook-col cf">
+                  <div class=""><span class="hook-title">钩子类型：</span>${data[i].type}</div>
+                  <div class=""><span class="hook-title">数据仓库地址：</span>${data[i].ssh_url.split('/')[data[i].ssh_url.split('/').length-1]}</div>
+                  <div class=""><span class="hook-title">分支名称：</span>${data[i].branch}</div>
+                  <div class=""><span class="hook-title">钩子事件类型：</span>${data[i].event}</div>
+              </div>
+              <div class="hook-col cf">
+                  <div class=""><span class="hook-title">workspace：</span>${data[i].workspace}</div>
+                  <div class=""><span class="hook-title">scheme：</span>${data[i].scheme}</div>
+                  <div class=""><span class="hook-title"><span></div>
+                  <div class=""><span class="hook-title"><span></div>
+              </div>
+              <div class="hook-col cf">
+                  <div class=""><span class="hook-title">hook处理方式：</span>${data[i].handler}</div>
+                  <div class=""><span class="hook-title">agent：</span>${data[i].agent.substr(0,10)}</div>
+                  <div class=""><span class="hook-title">更新时间：</span>${data[i].updated_time}</div>
+                  <div class=""><span class="hook-title"><span></div>
+              </div>
+            </div>`
+            $('.hook-list').append(str)
+        }
+        
+        
+      }
+
+      $('#script-submit').on('click', function() {
+        var option = {
+
+        }
+            option.type = +$('#script-type').val()
+            option.ssh_url = $('#script-ssh-url').val()
+            option.branch = $('#script-branch').val()
+            option.event = $('#script-event').val()
+            option.workspace = $('#script-workspace').val()
+            option.scheme = $('#script-scheme').val()
+            option.handler = $('#script-handler').val()
+            option.agent = $('#script-agent').val()
+
+
+        console.log(option)
+        // console.log(option)
+        request_hook_add(option, function(success, msg, data) {
+            if(!success) {
+              alert(msg);
+              return false;
+            }
+            list_render ([data])
+            console.log(data)
+            $('#add-script-alert').hide()
+        })
+
+    })
+
+    
+      request_hook_list(function(success, msg, data) {
+        if(!success) {
+            alert(msg);
+            return;
+        }
+        console.log(data)
+        list_render (data)
+      })
+
+      request_agent_now_list2(function(success,msg,data){
+        console.log(data)
+        for(var i = 0;i<data.length;i++) {
+          console.log(`<option val="${data[i].token}">${data[i].token}</option>`)
+          $('#script-agent').append(`<option val="${data[i].token}">${data[i].remote_ip}</option>`)
+        }
+      })
+
+      $('.add-script-close').on('click', function() {
+        $('#add-script-alert').hide()
+      })
+      $('#add-btn').on('click', function() {
+        $('#add-script-alert').show()
+      })
+
+      $('.hook-list').on('click','.close', function() {
+        console.log($(this).data('id'))
+        request_hook_delete($(this).data('id'),function(success, msg,data){
+          if(success) {
+            alert('删除成功')
+            request_hook_list(function(success, msg, data) {
+              if(!success) {
+                  alert(msg);
+                  return;
+              }
+              console.log(data)
+              list_render (data)
+            })
+          } else {
+            alert(msg)
+          }
+
+        })
+      })
+    </script>
+  </body>
+</html>

@@ -13,6 +13,10 @@ CONTACT_LIST = '/contact/list'
 CONTACT_ADD = '/contact/add'
 CONTACT_DELET = '/contact/delete'
 CONTACT_EDIT = '/contact/edit'
+HOOK_ADD = '/hook/add'
+HOOK_LIST = '/hook/list'
+AGENT_NOW_LIST = '/agent/list'
+HOOK_DELETE = '/hook/delete'
 
 
 
@@ -115,6 +119,42 @@ function retuqst_contact_edit (option, func) {
             handler_response(data, func)
     }, "json")
 }
+
+//添加webhook
+function request_hook_add (option,func) {
+    $.post(HOST + HOOK_ADD,
+        option,
+        function(data) {
+            handler_response(data, func)
+    }, "json")
+}
+
+//展示webhook
+function request_hook_list (func) {
+    $.get(HOST + HOOK_LIST,
+        function(data) {
+            handler_response(data, func)
+    }, "json")
+}
+
+//删除webhook
+function request_hook_delete (_id,func) {
+    $.post(HOST + HOOK_DELETE,
+        {_id},
+        function(data) {
+            handler_response(data, func)
+    }, "json")
+}
+
+//获取agent
+function request_agent_now_list2 (func) {
+    $.get(HOST + AGENT_NOW_LIST,
+        function(data) {
+            handler_response(data, func)
+    }, "json")
+}
+
+
 
 function handler_response(origin_data, func) {
     if (origin_data === null) {
