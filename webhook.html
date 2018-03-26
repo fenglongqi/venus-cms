@@ -160,6 +160,7 @@
 
 
       function list_render (data) {
+        $('.hook-list').html('')
         console.log(data)
         for(var i = 0; i<data.length;i++) {
           var str = 
@@ -211,14 +212,14 @@
               alert(msg);
               return false;
             }
-            list_render ([data])
+            list_show()
             console.log(data)
             $('#add-script-alert').hide()
         })
 
     })
 
-    
+    function list_show () {
       request_hook_list(function(success, msg, data) {
         if(!success) {
             alert(msg);
@@ -227,6 +228,10 @@
         console.log(data)
         list_render (data)
       })
+    }
+      
+    list_show()
+
 
       request_agent_now_list2(function(success,msg,data){
         console.log(data)
@@ -244,23 +249,27 @@
       })
 
       $('.hook-list').on('click','.close', function() {
-        console.log($(this).data('id'))
-        request_hook_delete($(this).data('id'),function(success, msg,data){
-          if(success) {
-            alert('删除成功')
-            request_hook_list(function(success, msg, data) {
-              if(!success) {
-                  alert(msg);
-                  return;
-              }
-              console.log(data)
-              list_render (data)
-            })
-          } else {
-            alert(msg)
-          }
+        
+        if(confirm('确认删除吗？')){
+          request_hook_delete($(this).data('id'),function(success, msg,data){
+            if(success) {
+              alert('删除成功')
+              request_hook_list(function(success, msg, data) {
+                if(!success) {
+                    alert(msg);
+                    return;
+                }
+                console.log(data)
+                list_show()
+              })
+            } else {
+              alert(msg)
+            }
 
-        })
+          })
+        }
+        console.log($(this).data('id'))
+        
       })
     </script>
   </body>
