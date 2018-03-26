@@ -53,6 +53,12 @@ _sidebar = `<div class="an-sidebar-widgets agent-count">
       <span class="nav-title">联系人列表</span>
     </a>
   </li>
+  <li class="an-nav-item">
+    <a class="" href="./webhook.html">
+      <i class="icon-chat-o"></i>
+      <span class="nav-title">webhook</span>
+    </a>
+  </li>
 
 </ul> <!-- end .AN-MAIN-NAV -->
 </div> <!-- end .AN-SIDEBAR-NAV -->`
