@@ -167,10 +167,10 @@
             `<div class="col-sm-12 col-xs-12 hook-list-item">
               <h5 class="hook-list-title">钩子<span data-id="${data[i]._id}" class="close icon-close"></span></h5>
               <div class="hook-col cf">
-                  <div class=""><span class="hook-title">钩子类型：</span>${data[i].type}</div>
+                  <div class=""><span class="hook-title">钩子类型：</span>${data[i].type ==1?"github":"gitlab"}</div>
                   <div class=""><span class="hook-title">数据仓库地址：</span>${data[i].ssh_url.split('/')[data[i].ssh_url.split('/').length-1]}</div>
                   <div class=""><span class="hook-title">分支名称：</span>${data[i].branch}</div>
-                  <div class=""><span class="hook-title">钩子事件类型：</span>${data[i].event}</div>
+                  <div class=""><span class="hook-title">钩子事件类型：</span>${data[i].event==1?"push":"commit"}</div>
               </div>
               <div class="hook-col cf">
                   <div class=""><span class="hook-title">workspace：</span>${data[i].workspace}</div>
@@ -179,7 +179,7 @@
                   <div class=""><span class="hook-title"><span></div>
               </div>
               <div class="hook-col cf">
-                  <div class=""><span class="hook-title">hook处理方式：</span>${data[i].handler}</div>
+                  <div class=""><span class="hook-title">hook处理方式：</span>${data[i].handler==1?"执行打包任务":"更新代码到agent"}</div>
                   <div class=""><span class="hook-title">agent：</span>${data[i].agent.substr(0,10)}</div>
                   <div class=""><span class="hook-title">更新时间：</span>${data[i].updated_time}</div>
                   <div class=""><span class="hook-title"><span></div>
